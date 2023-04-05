@@ -14,4 +14,12 @@ public class Column {
         return elements;
     }
 
+    public int getElement(int index){
+        return elements[index];
+    }
+
+    public int getSize(){
+        return elements.length;
+    }
+
 }
