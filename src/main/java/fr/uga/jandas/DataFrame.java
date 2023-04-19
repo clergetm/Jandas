@@ -1,7 +1,7 @@
 package fr.uga.jandas;
 
-
 import java.io.FileInputStream;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -44,7 +44,27 @@ public class DataFrame {
             int nbCol = types.length;
             Column[] columns = new Column[types.length];
             for (int i=0; i<nbCol; i++){
-                Column aColumn = new Column(types[i], nbLines);
+                Column aColumn;
+                // Parsing types
+                switch (types[i]){
+                    case "Integer":
+                        aColumn = new Column<Integer>(nbLines);
+                        break;
+                    case "String":
+                        aColumn = new Column<String>(nbLines);
+                        break;
+                    case "Float":
+                        aColumn = new Column<Float>(nbLines);
+                        break;
+                    case "Boolean":
+                        aColumn = new Column<Boolean>(nbLines);
+                        break;
+                    case "Date":
+                        aColumn = new Column<Date>(nbLines);
+                        break;
+                    default:
+                        throw new Exception("Unknown column type !");
+                }
                 columns[i] = aColumn;
             }
 
@@ -83,6 +103,29 @@ public class DataFrame {
 
     public Object getElement(int colIndex, int lineIndex){
         return columns[colIndex].getElement(lineIndex);
+    }
+
+//    public String print(){
+//        System.out.println("[ ");
+//        for (int i=0; i<lines; i++){
+//            Object[] line = getLine(i);
+//            for (int j=0; j<columns.length; j++){
+//                String type = columns[j].type;
+//                Object obj = line[j];
+//                switch (type){
+//                    case "Integer":
+//                        System.out.print(Integer.parseInt(obj));
+//                }
+//            }
+//        }
+//    }
+
+    public String printFirstLines(int nbLines){
+        return null;
+    }
+
+    public String printLastLines(int nbLines){
+        return null;
     }
 
     @Override
