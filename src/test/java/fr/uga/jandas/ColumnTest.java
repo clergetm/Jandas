@@ -20,11 +20,7 @@ class ColumnTest {
 
     @Test
     void getElements() {
-        Integer [] elements = col.getElements();
-        assertEquals(elements.length, data.length);
-        for (int i = 0; i < elements.length; i ++){
-           assertEquals(elements[i], data[i]);
-        }
+        assertArrayEquals(data, col.getElements());
     }
 
     @Test
