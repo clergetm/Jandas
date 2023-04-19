@@ -4,18 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9097db2d-ff33-484e-8328-fffcd07a5ecf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="9097db2d-ff33-484e-8328-fffcd07a5ecf" name="Changes" comment="mercredi matin 19/04">
+      <change afterPath="$PROJECT_DIR$/src/test/java/fr/uga/jandas/ColumnTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/uga/jandas/Column.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/uga/jandas/Column.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/fr/uga/jandas/DataFrameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/fr/uga/jandas/DataFrameTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="34816b44-255a-478b-9a95-36f127478125" />
+        <option name="url" value="https://github.com/MathysC/Jandas.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -31,15 +58,101 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/mathys/Documents/projects/java",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "dataframe",
+    "last_opened_file_path": "/home/armand/M1/S2/Crypto",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="fr.uga.jandas" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.DataFrameTest">
+    <configuration name="AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jandas" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.uga.jandas.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fr.uga.jandas" />
+      <option name="MAIN_CLASS_NAME" value="fr.uga.jandas.AppTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ColumnTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jandas" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.uga.jandas.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fr.uga.jandas" />
+      <option name="MAIN_CLASS_NAME" value="fr.uga.jandas.ColumnTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataFrameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jandas" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.uga.jandas.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fr.uga.jandas" />
+      <option name="MAIN_CLASS_NAME" value="fr.uga.jandas.DataFrameTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataFrameTest.CreateDataFrameInt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jandas" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.uga.jandas.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fr.uga.jandas" />
+      <option name="MAIN_CLASS_NAME" value="fr.uga.jandas.DataFrameTest" />
+      <option name="METHOD_NAME" value="CreateDataFrameInt" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.DataFrameTest" />
+        <item itemvalue="JUnit.DataFrameTest.CreateDataFrameInt" />
+        <item itemvalue="JUnit.ColumnTest" />
+        <item itemvalue="JUnit.AppTest" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -49,10 +162,54 @@
       <option name="presentableId" value="Default" />
       <updated>1680680329247</updated>
       <workItem from="1680680330415" duration="1117000" />
+      <workItem from="1681884183996" duration="3811000" />
     </task>
+    <task id="LOCAL-00001" summary="add test template for DataFrame">
+      <created>1680686266759</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1680686266759</updated>
+    </task>
+    <task id="LOCAL-00002" summary="mercredi matin 19/04">
+      <created>1681884682116</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681884682116</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/dataframe" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add test template for DataFrame" />
+    <MESSAGE value="mercredi matin 19/04" />
+    <option name="LAST_COMMIT_MESSAGE" value="mercredi matin 19/04" />
   </component>
 </project>
