@@ -1,6 +1,7 @@
 package fr.uga.jandas;
 
 import java.io.FileInputStream;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -144,4 +145,11 @@ public class DataFrame {
         return str.toString();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (getClass() != obj.getClass()) return false;
+        DataFrame df = (DataFrame) obj;
+        if (lines != df.lines) return false;
+        return Arrays.equals(columns, df.columns);
+    }
 }

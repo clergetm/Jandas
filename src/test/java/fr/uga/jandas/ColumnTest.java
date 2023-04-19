@@ -59,7 +59,7 @@ class ColumnTest {
     void addElement() {
         // 1 element off
         Column colbis;
-        colbis = new Column("Integer", 6);
+        colbis = new Column<Integer>( 6);
         for (int i = 0; i < 6; i++){
             colbis.addElement(data[i], i);
         }

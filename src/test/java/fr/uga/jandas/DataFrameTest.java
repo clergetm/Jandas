@@ -63,4 +63,25 @@ public class DataFrameTest {
             assertEquals(i, df.getElement(index%3,index/3));
         }
     }
+
+    @Test
+    void Equals() {
+        Column [] columns = new Column[]{c1, c2, c3};
+        DataFrame df2 = new DataFrame(columns);
+        assertEquals(df,df2);
+        Integer[] col3bis = new Integer[]{9, 6};
+        Column c3bis = new Column(2, col3bis);
+        columns = new Column[]{c1, c2, c3bis};
+        df2 = new DataFrame(columns);
+        assertNotEquals(df, df2);
+    }
+
+    @Test
+    void DataFrameFromFile() {
+        String filename = "src/test/resources/Test1.csv";
+        DataFrame df2 = new DataFrame(filename);
+        DataFrame df3 = new DataFrame(filename);
+        assertEquals(df3, df2);
+        assertEquals(df, df3);
+    }
 }
