@@ -5,11 +5,15 @@ import java.util.Arrays;
 public class Column {
 
     String type;
-    Integer [] elements;
+    Object [] elements;
 
-    public Column(int nb_elements){
-        type = "Integer";
-        elements = new Integer[nb_elements];
+    public Column(String t, int nb_elements){
+        type = t;
+        elements = new Object[nb_elements];
+    }
+
+    public void addElement(Object e, int index){
+        elements[index] = e;
     }
 
     public Column(int nb_elements, Integer [] arr){
@@ -18,11 +22,11 @@ public class Column {
         System.arraycopy(arr, 0, elements, 0, nb_elements);
     }
 
-    public Integer[] getElements(){
+    public Object[] getElements(){
         return elements;
     }
 
-    public int getElement(int index){
+    public Object getElement(int index){
         return elements[index];
     }
 
