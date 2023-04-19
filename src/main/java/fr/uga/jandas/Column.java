@@ -11,17 +11,14 @@ public class Column {
         type = t;
         elements = new Object[nb_elements];
     }
-
-    public void addElement(Object e, int index){
-        elements[index] = e;
-    }
-
     public Column(int nb_elements, Integer [] arr){
         type = "Integer";
         elements = new Integer[nb_elements];
         System.arraycopy(arr, 0, elements, 0, nb_elements);
     }
-
+    public void addElement(Object e, int index){
+        elements[index] = e;
+    }
     public Object[] getElements(){
         return elements;
     }
