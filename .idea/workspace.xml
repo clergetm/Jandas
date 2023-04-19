@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9097db2d-ff33-484e-8328-fffcd07a5ecf" name="Changes" comment="mercredi matin 19/04">
-      <change afterPath="$PROJECT_DIR$/src/test/java/fr/uga/jandas/ColumnTest.java" afterDir="false" />
+    <list default="true" id="9097db2d-ff33-484e-8328-fffcd07a5ecf" name="Changes" comment="add DataFrame and Column Tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/uga/jandas/Column.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/uga/jandas/Column.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/fr/uga/jandas/DataFrameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/fr/uga/jandas/DataFrameTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,7 +80,7 @@
       <recent name="fr.uga.jandas" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DataFrameTest">
+  <component name="RunManager" selected="JUnit.DataFrameTest.getLine">
     <configuration name="AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Jandas" />
       <extension name="coverage">
@@ -144,8 +142,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DataFrameTest.getLine" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jandas" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.uga.jandas.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fr.uga.jandas" />
+      <option name="MAIN_CLASS_NAME" value="fr.uga.jandas.DataFrameTest" />
+      <option name="METHOD_NAME" value="getLine" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DataFrameTest.getLine" />
         <item itemvalue="JUnit.DataFrameTest" />
         <item itemvalue="JUnit.DataFrameTest.CreateDataFrameInt" />
         <item itemvalue="JUnit.ColumnTest" />
@@ -162,7 +177,7 @@
       <option name="presentableId" value="Default" />
       <updated>1680680329247</updated>
       <workItem from="1680680330415" duration="1117000" />
-      <workItem from="1681884183996" duration="3811000" />
+      <workItem from="1681884183996" duration="5060000" />
     </task>
     <task id="LOCAL-00001" summary="add test template for DataFrame">
       <created>1680686266759</created>
@@ -178,7 +193,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681884682116</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add DataFrame and Column Tests">
+      <created>1681888183717</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1681888183717</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add DataFrame and Column Tests">
+      <created>1681888225137</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681888225137</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,6 +239,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add test template for DataFrame" />
     <MESSAGE value="mercredi matin 19/04" />
-    <option name="LAST_COMMIT_MESSAGE" value="mercredi matin 19/04" />
+    <MESSAGE value="add DataFrame and Column Tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="add DataFrame and Column Tests" />
   </component>
 </project>

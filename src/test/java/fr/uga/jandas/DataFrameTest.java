@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DataFrameTest {
+public class DataFrameTest {
 
     Integer [] col1, col2, col3, lin1, lin2;
     Column c1, c2, c3;
     DataFrame df;
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         // Array    [[ 1 2 3 ]
         //           [ 4 5 6 ]]
         col1 = new Integer[]{1, 4};
@@ -28,7 +28,7 @@ class DataFrameTest {
         df = new DataFrame(columns);
     }
     @Test
-    void CreateDataFrameInt() {
+    public void CreateDataFrameInt() {
         assertNotNull(df);
     }
     @Test
@@ -47,10 +47,10 @@ class DataFrameTest {
     @Test
     void getLine() {
         // test ligne 1
-        Integer [] line1r = (Integer[]) df.getLine(0);
+        Object [] line1r = df.getLine(0);
         assertArrayEquals(lin1, line1r);
         // test ligne 2
-        Integer [] line2r = (Integer[]) df.getLine(1);
+        Object [] line2r = df.getLine(1);
         assertArrayEquals(lin2, line2r);
     }
 
