@@ -2,7 +2,6 @@ package fr.uga.jandas;
 
 
 import java.io.FileInputStream;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -32,7 +31,7 @@ public class DataFrame {
             Scanner nbLineReader = new Scanner(file);
             int nbLines = -1;
             while (nbLineReader.hasNextLine()){
-                String aLine = nbLineReader.nextLine();
+                nbLineReader.nextLine();
                 nbLines++;
             }
             nbLineReader.close();
