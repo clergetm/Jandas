@@ -105,42 +105,43 @@ public class DataFrame {
         return columns[colIndex].getElement(lineIndex);
     }
 
-//    public String print(){
-//        System.out.println("[ ");
-//        for (int i=0; i<lines; i++){
-//            Object[] line = getLine(i);
-//            for (int j=0; j<columns.length; j++){
-//                String type = columns[j].type;
-//                Object obj = line[j];
-//                switch (type){
-//                    case "Integer":
-//                        System.out.print(Integer.parseInt(obj));
-//                }
-//            }
-//        }
-//    }
-
-    public String printFirstLines(int nbLines){
-        return null;
+    private void print(int start, int end){
+        System.out.print("[ ");
+        for (int i=start; i<end; i++){
+            Object[] line = getLine(i);
+            for (int j=0; j<columns.length; j++){
+                System.out.print(line[j] + " ");
+            }
+            if (i != end -1 ) System.out.print("\n  ");
+        }
+        System.out.println("]");
     }
 
-    public String printLastLines(int nbLines){
-        return null;
+    public void print(){
+        print(0, lines);
+    }
+
+    public void printFirstLines(int nbLines){
+        print(0, nbLines);
+    }
+
+    public void printLastLines(int nbLines){
+        print(lines-nbLines, lines);
     }
 
     @Override
     public String toString(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Dataframe : [");
-        for (int i=0; i<columns.length; i++)
-        {
-            for (int j = 0; j < lines; j++) {
-                stringBuilder.append(columns[i].getElement(j)).append(" ");
+        StringBuilder str = new StringBuilder();
+        str.append("[ ");
+        for (int i=0; i<lines; i++){
+            Object[] line = getLine(i);
+            for (int j=0; j<columns.length; j++){
+                str.append(line[j]).append(" ");
             }
-            stringBuilder.append(",\n ");
+            if (i != lines -1 ) str.append("\n  ");
         }
-        stringBuilder.append("]");
-        return stringBuilder.toString();
+        str.append("]");
+        return str.toString();
     }
 
 }
