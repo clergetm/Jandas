@@ -7,9 +7,10 @@ import java.util.Scanner;
 /**
     Format des fichiers en entrée:
         t0,     t1,     t2,     t3
+        l0;     l1,     l2,     l3
         n00,    n01,    n02,    n03
         n10,    n11,    n12,    n13
-    La première ligne donne les types des colonnes.
+    La première ligne donne les types des colonnes. La seconde contient les étiquettes de chaque colonne.
     Puis chaque ligne correspond à une ligne du tableau et les virgules correspondent aux séparations
     entre les colonnes. Les portions de texte séparées par une virgule correspondent ainsi aux contenus des
     cellules du tableau.
@@ -29,7 +30,7 @@ public class DataFrame {
             // Counting the number of lines
             FileInputStream file = new FileInputStream(filename);
             Scanner nbLineReader = new Scanner(file);
-            int nbLines = -1;
+            int nbLines = -2; // We remove first and second line
             while (nbLineReader.hasNextLine()){
                 nbLineReader.nextLine();
                 nbLines++;
@@ -66,6 +67,12 @@ public class DataFrame {
                         throw new Exception("Unknown column type !");
                 }
                 columns[i] = aColumn;
+            }
+
+            // Defining label of each column
+            String[] labels = scanner.nextLine().split(",");
+            for (int i=0; i<nbCol; i++){
+                columns[i].setLabel(labels[i]);
             }
 
             int lineCounter = 0;
@@ -107,6 +114,10 @@ public class DataFrame {
 
     private void print(int start, int end){
         System.out.print("[ ");
+        for (int c=0; c<columns.length; c++){
+            System.out.print(columns[c].getLabel() + " ");
+        }
+        System.out.print("\n  ");
         for (int i=start; i<end; i++){
             Object[] line = getLine(i);
             for (int j=0; j<columns.length; j++){
@@ -133,6 +144,10 @@ public class DataFrame {
     public String toString(){
         StringBuilder str = new StringBuilder();
         str.append("[ ");
+        for (int c=0; c<columns.length; c++){
+            str.append(columns[c].getLabel()).append(" ");
+        }
+        str.append("\n  ");
         for (int i=0; i<lines; i++){
             Object[] line = getLine(i);
             for (int j=0; j<columns.length; j++){

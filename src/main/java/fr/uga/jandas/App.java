@@ -9,7 +9,7 @@ public class App
     public static void main( String[] args )
     {
         System.out.println( "Hello World!" );
-        DataFrame dataFrame = new DataFrame("test.txt");
+        DataFrame dataFrame = new DataFrame("src/main/resources/test.txt");
         System.out.println(dataFrame);
         dataFrame.print();
         dataFrame.printFirstLines(2);
