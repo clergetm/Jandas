@@ -2,6 +2,7 @@ package fr.uga.jandas;
 
 import java.io.FileInputStream;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -19,10 +20,22 @@ public class DataFrame {
 
     Column [] columns;
     int lines;
+    String [] labels;
+
+    DataFrame(String [] labels, Column [] columns){
+        lines = columns[0].getSize();
+        this.columns = columns;
+        this.labels = labels;
+    }
 
     DataFrame(Column [] columns){
         lines = columns[0].getSize();
         this.columns = columns;
+
+        labels = new String[columns.length];
+        for (int l=0; l<columns.length; l++){
+            labels[l] = columns[l].getLabel();
+        }
     }
 
     DataFrame(String filename){
@@ -74,6 +87,7 @@ public class DataFrame {
             for (int i=0; i<nbCol; i++){
                 columns[i].setLabel(labels[i]);
             }
+            this.labels = labels;
 
             int lineCounter = 0;
             while(scanner.hasNextLine())
@@ -98,6 +112,16 @@ public class DataFrame {
         return columns[index];
     }
 
+    public Column getColumn(String label){
+        for (int l=0; l< columns.length; l++){
+            if (Objects.equals(columns[l].getLabel(), label)){
+                return columns[l];
+            }
+        }
+        System.err.println("DataFrame.getColumn : '"+label+"' Unknown label");
+        return null;
+    }
+
     public Object[] getLine(int index){
         if (index > lines)
             throw new IndexOutOfBoundsException();
@@ -111,6 +135,30 @@ public class DataFrame {
     public Object getElement(int colIndex, int lineIndex){
         return columns[colIndex].getElement(lineIndex);
     }
+
+    public String [] getLabels(){
+        return labels;
+    }
+
+    /* createFrom :
+        Create a new Dataframe based on a column set of current Dataframe.
+     */
+    public DataFrame createFrom(String [] labels){
+        Column [] cols = new Column[labels.length];
+        for (int l=0; l<labels.length; l++){
+            cols[l] = getColumn(labels[l]);
+        }
+        return new DataFrame(cols);
+    }
+
+    /* createFrom :
+    Create a new Dataframe based on a line set of current Dataframe.
+ */
+    public DataFrame createFrom(int [] indexes){
+        //TODO
+        return null;
+    }
+
 
     private void print(int start, int end){
         System.out.print("[ ");
