@@ -2,12 +2,9 @@ name: CI # Name of the workflow
 run-name: Continuous Integration on ${{ github.event_name }} by ${{ github.triggering_actor }} # Name of the executed workflow
 
 on:
-    push:
+    pull_request:
       branches:
-        - 1-create-workflows
-    #pull_request:
-      #branches:
-        #- dev
+        - dev
 
 jobs:
     coverage:
