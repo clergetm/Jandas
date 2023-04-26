@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9097db2d-ff33-484e-8328-fffcd07a5ecf" name="Changes" comment="add DataFrame and Column Tests">
+    <list default="true" id="9097db2d-ff33-484e-8328-fffcd07a5ecf" name="Changes" comment="fix: arraylist remplace array. switch and cast before insertion into column">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/uga/jandas/Column.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/uga/jandas/Column.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/uga/jandas/DataFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/uga/jandas/DataFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/fr/uga/jandas/DataFrameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/fr/uga/jandas/DataFrameTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/Test1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/Test1.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,24 +19,24 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="dataframe" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -58,15 +61,15 @@
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "dataframe",
+    "git-widget-placeholder": "8fd477e6",
     "last_opened_file_path": "/home/armand/M1/S2/Crypto",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
@@ -76,26 +79,14 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/resources" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="fr.uga.jandas" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DataFrameTest.getLine">
-    <configuration name="AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Jandas" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="fr.uga.jandas.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="fr.uga.jandas" />
-      <option name="MAIN_CLASS_NAME" value="fr.uga.jandas.AppTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.DataFrameTest">
     <configuration name="ColumnTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Jandas" />
       <extension name="coverage">
@@ -126,7 +117,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DataFrameTest.CreateDataFrameInt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DataFrameTest.DataFrameFromFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Jandas" />
       <extension name="coverage">
         <pattern>
@@ -136,13 +127,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="fr.uga.jandas" />
       <option name="MAIN_CLASS_NAME" value="fr.uga.jandas.DataFrameTest" />
-      <option name="METHOD_NAME" value="CreateDataFrameInt" />
+      <option name="METHOD_NAME" value="DataFrameFromFile" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DataFrameTest.getLine" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DataFrameTest.Equals" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Jandas" />
       <extension name="coverage">
         <pattern>
@@ -152,7 +143,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="fr.uga.jandas" />
       <option name="MAIN_CLASS_NAME" value="fr.uga.jandas.DataFrameTest" />
-      <option name="METHOD_NAME" value="getLine" />
+      <option name="METHOD_NAME" value="Equals" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataFrameTest.getElement" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jandas" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.uga.jandas.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fr.uga.jandas" />
+      <option name="MAIN_CLASS_NAME" value="fr.uga.jandas.DataFrameTest" />
+      <option name="METHOD_NAME" value="getElement" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -160,11 +167,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DataFrameTest.getLine" />
         <item itemvalue="JUnit.DataFrameTest" />
-        <item itemvalue="JUnit.DataFrameTest.CreateDataFrameInt" />
+        <item itemvalue="JUnit.DataFrameTest.Equals" />
+        <item itemvalue="JUnit.DataFrameTest.DataFrameFromFile" />
+        <item itemvalue="JUnit.DataFrameTest.getElement" />
         <item itemvalue="JUnit.ColumnTest" />
-        <item itemvalue="JUnit.AppTest" />
       </list>
     </recent_temporary>
   </component>
@@ -177,7 +184,8 @@
       <option name="presentableId" value="Default" />
       <updated>1680680329247</updated>
       <workItem from="1680680330415" duration="1117000" />
-      <workItem from="1681884183996" duration="5060000" />
+      <workItem from="1681884183996" duration="11908000" />
+      <workItem from="1682488845419" duration="8265000" />
     </task>
     <task id="LOCAL-00001" summary="add test template for DataFrame">
       <created>1680686266759</created>
@@ -207,7 +215,63 @@
       <option name="project" value="LOCAL" />
       <updated>1681888225137</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fix: test on Object[]">
+      <created>1681889492180</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1681889492180</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix: Maven surefire plugin">
+      <created>1681890899333</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1681890899333</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix: assertArraysEquals">
+      <created>1681891589641</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1681891589641</updated>
+    </task>
+    <task id="LOCAL-00008" summary="refactor: methods order">
+      <created>1681892002002</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1681892002002</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat: test add element">
+      <created>1681894189674</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1681894189674</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat: add test for fileconversion">
+      <created>1681896084969</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1681896084969</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fix: arraylist remplace array. switch and cast before insertion into column">
+      <created>1682497101124</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1682497101124</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fix: arraylist remplace array. switch and cast before insertion into column">
+      <created>1682497431914</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1682497431915</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,7 +288,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/dataframe" />
+                        <option value="dataframe" />
                       </list>
                     </value>
                   </entry>
@@ -240,6 +304,43 @@
     <MESSAGE value="add test template for DataFrame" />
     <MESSAGE value="mercredi matin 19/04" />
     <MESSAGE value="add DataFrame and Column Tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="add DataFrame and Column Tests" />
+    <MESSAGE value="fix: test on Object[]" />
+    <MESSAGE value="fix: Maven surefire plugin" />
+    <MESSAGE value="fix: assertArraysEquals" />
+    <MESSAGE value="refactor: methods order" />
+    <MESSAGE value="feat: test add element" />
+    <MESSAGE value="feat: add test for fileconversion" />
+    <MESSAGE value="fix: arraylist remplace array. switch and cast before insertion into column" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: arraylist remplace array. switch and cast before insertion into column" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/fr/uga/jandas/DataFrameTest.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/fr/uga/jandas/DataFrameTest.java</url>
+          <line>69</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/fr/uga/jandas/DataFrameTest.java</url>
+          <line>68</line>
+          <properties class="fr.uga.jandas.DataFrameTest" method="Equals">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Jandas$DataFrameTest.ic" NAME="DataFrameTest Coverage Results" MODIFIED="1681891060278" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>fr.uga.jandas.*</FILTER>
+    </SUITE>
   </component>
 </project>
