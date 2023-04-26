@@ -21,7 +21,7 @@ import java.util.Scanner;
  * ...,...,...,...<br>
  * em0,em1,...,emn<br>
  * The first line gives the type of each column. The second line gives the labels of each column. The following lines
- * give the elements (data) to add in the DataFrame. Each cell is separated by a coma <bold>without space</bold>.
+ * give the elements (data) to add in the DataFrame. Each cell is separated by a coma <b>without space</b>.
  *
  * Columns are stored thanks to Column class, and each Column can store objects sharing the same type.
  *
@@ -51,7 +51,7 @@ public class DataFrame {
      * Initialize a newly created DataFrame object so that it represent the 2D-array given a file name. This file need
      * to follow the CSV format described on DataFrame documentation. Recall : <br>
      * The first line gives the type of each column. The second line gives the labels of each column. The following lines
-     * give the elements (data) to add in the DataFrame. Each cell is separated by a coma <bold>without space</bold>.
+     * give the elements (data) to add in the DataFrame. Each cell is separated by a coma <b>without space</b>.
      * @param filename The name of the file to create DataFrame from.
      */
     DataFrame(String filename){
@@ -198,6 +198,9 @@ public class DataFrame {
 
     /**
      * Prints the mean value calculated of each column. If the mean is not calculable, it prints NaN instead.
+     *  @return a String with column labels and mean values such as :
+     *      Age name
+     *  mean 34.6 NaN
      */
     public String mean(){
         StringBuilder str = new StringBuilder("     ");
@@ -220,6 +223,9 @@ public class DataFrame {
 
     /**
      * Prints the max value calculated of each column. If the max is not calculable, it prints NaN instead.
+     *  @return a String with column labels and max values such as :
+     *      Age name
+     * max 88 NaN
      */
     public String max(){
         StringBuilder str = new StringBuilder("     ");
@@ -242,6 +248,9 @@ public class DataFrame {
 
     /**
      *  Prints the min value calculated of each column. If the min is not calculable, it prints NaN instead.
+     *  @return a String with column labels and min values such as :
+     *      Age name
+     * min 3 NaN
      */
     public String min(){
         StringBuilder str = new StringBuilder("     ");
@@ -349,7 +358,7 @@ public class DataFrame {
     }
 
     /**
-     * Returns a String object representing this DataFrame's value. Uses print() method.
+     * Returns a String object representing this DataFrame's value.
      * @return a string representation of the value of this object like an array.
      */
     @Override
@@ -357,6 +366,12 @@ public class DataFrame {
         return toString(0, lines);
     }
 
+    /**
+     * Returns a String object representing a subset of this DataFrame's value .
+     * @param start is the first line to be display. Previous one are not consider.
+     * @param end is the last line to be display. Further lines are not consider.
+     * @return a string representation of the value of this object like an array.
+     */
     public String toString(int start, int end){
         StringBuilder str = new StringBuilder();
         str.append("[ ");

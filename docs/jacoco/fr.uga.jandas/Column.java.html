@@ -1,82 +1,244 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Column.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jandas</a> &gt; <a href="index.source.html" class="el_package">fr.uga.jandas</a> &gt; <span class="el_source">Column.java</span></div><h1>Column.java</h1><pre class="source lang-java linenums">package fr.uga.jandas;
 
-
+/**
+ * The Column class represents a 1-dimension array. It is used by the DataFrame class to store elements in 2-dimensions array.
+ * A Column store one type of object. This type can be : Integer, Float, Double, Boolean or String. Others types are not
+ * supported.
+ *
+ * This class contains an attribute called type used to do calculations and statistics. It is overkill since Column is
+ * already generic, but this is the only way we found to get the elements type.
+ *
+ * @param &lt;T&gt; The type of objects stored in the column
+ */
 @SuppressWarnings(&quot;unchecked&quot;)
 public class Column&lt;T&gt;{
     String label;
     private String type;
     T [] elements;
 
-<span class="fc" id="L10">    public Column(String type, int nb_elements){</span>
-<span class="fc" id="L11">        this.type = type;</span>
-<span class="fc" id="L12">        elements = (T[]) new Object[nb_elements];</span>
-<span class="fc" id="L13">    }</span>
+    /**
+     * Initialize a newly created Column object so that it represents an empty 1D-array. It will contain
+     * a certain number of objects of defined type.
+     * @param type The type of objects in the column (array).
+     * @param nb_elements The number of objects in the array.
+     */
+<span class="fc" id="L25">    public Column(String type, int nb_elements){</span>
+<span class="fc" id="L26">        this.type = type;</span>
+<span class="fc" id="L27">        elements = (T[]) new Object[nb_elements];</span>
+<span class="fc" id="L28">    }</span>
 
-<span class="fc" id="L15">    public Column(String type, int nb_elements, T [] arr){</span>
-<span class="fc" id="L16">        this.type = type;</span>
-<span class="fc" id="L17">        elements = (T[]) new Object[nb_elements];</span>
-<span class="fc" id="L18">        System.arraycopy(arr, 0, elements, 0, nb_elements);</span>
-<span class="fc" id="L19">    }</span>
+    /**
+     * Initialize a newly created Column object so that it represents a 1D-array given in argument. It contains
+     * a certain number of objects of defined type. Note that the given array is deep copied.
+     * @param type The type of objects in the column (array).
+     * @param nb_elements The number of objects in the array.
+     * @param arr The array with objects to add in column.
+     */
+<span class="fc" id="L37">    public Column(String type, int nb_elements, T [] arr){</span>
+<span class="fc" id="L38">        this.type = type;</span>
+<span class="fc" id="L39">        elements = (T[]) new Object[nb_elements];</span>
+<span class="fc" id="L40">        System.arraycopy(arr, 0, elements, 0, nb_elements);</span>
+<span class="fc" id="L41">    }</span>
 
-<span class="fc" id="L21">    public Column(String l, String type, int nb_elements, T [] arr){</span>
-<span class="fc" id="L22">        this.type = type;</span>
-<span class="fc" id="L23">        label = l;</span>
-<span class="fc" id="L24">        elements = (T[]) new Object[nb_elements];</span>
-<span class="fc" id="L25">        System.arraycopy(arr, 0, elements, 0, nb_elements);</span>
-<span class="fc" id="L26">    }</span>
+    /**
+     * Same as others constructors but it allows to add the column label directly.
+     * @param l The column label.
+     * @param type The type of objects in the column (array).
+     * @param nb_elements The number of objects in the array.
+     * @param arr The array with objects to add in column.
+     */
+    public Column(String l, String type, int nb_elements, T [] arr){
+<span class="fc" id="L51">        this(type, nb_elements, arr);</span>
+<span class="fc" id="L52">        label = l;</span>
+<span class="fc" id="L53">    }</span>
 
-<span class="fc" id="L28">    private Column(String l, String t, int [] indexes, T [] arr){</span>
+    /**
+     * Used internally to create a deep copy of Column.
+     * @param l The copied label
+     * @param indexes The indexes of lines to add in the new Column.
+     * @param arr The elements to be copied.
+     * @param t The type of elements.
+     */
+<span class="fc" id="L62">    private Column(String l, String t, int [] indexes, T [] arr){</span>
         // We create a copy of elements
-<span class="fc" id="L30">        T [] new_elements = (T[]) new Object[arr.length];</span>
-<span class="fc" id="L31">        System.arraycopy(arr, 0, new_elements, 0, arr.length);</span>
-<span class="fc" id="L32">        label = l;</span>
-<span class="fc" id="L33">        type = t;</span>
-<span class="fc" id="L34">        elements = (T[]) new Object[indexes.length];</span>
+<span class="fc" id="L64">        T [] new_elements = (T[]) new Object[arr.length];</span>
+<span class="fc" id="L65">        System.arraycopy(arr, 0, new_elements, 0, arr.length);</span>
+<span class="fc" id="L66">        label = l;</span>
+<span class="fc" id="L67">        type = t;</span>
+<span class="fc" id="L68">        elements = (T[]) new Object[indexes.length];</span>
         // And we select only a certain amount of elements
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        for (int i=0; i&lt;indexes.length; i++){</span>
-<span class="fc" id="L37">            elements[i] = new_elements[indexes[i]];</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        for (int i=0; i&lt;indexes.length; i++){</span>
+<span class="fc" id="L71">            elements[i] = new_elements[indexes[i]];</span>
         }
-<span class="fc" id="L39">    }</span>
+<span class="fc" id="L73">    }</span>
 
+    /**
+     * Set the label of the current Column.
+     * @param l The new label name.
+     */
     public void setLabel(String l){
-<span class="fc" id="L42">        label = l;</span>
-<span class="fc" id="L43">    }</span>
+<span class="fc" id="L80">        label = l;</span>
+<span class="fc" id="L81">    }</span>
 
+    /**
+     * Return the label of the current Column.
+     * @return The String representing the label.
+     */
     public String getLabel(){
-<span class="fc" id="L46">        return label;</span>
+<span class="fc" id="L88">        return label;</span>
     }
 
+    /**
+     * Used to add an element in the current Column at given index. If there is another element in there,
+     * it will be erased. Note that it suppose that the element has the good type.
+     * @param e The element to add.
+     * @param index The element index.
+     */
     public void addElement(T e, int index){
-<span class="fc" id="L50">        elements[index] = e;</span>
-<span class="fc" id="L51">    }</span>
+<span class="fc" id="L98">        elements[index] = e;</span>
+<span class="fc" id="L99">    }</span>
 
+    /**
+     * Returns all elements in the current Column on an 1D array.
+     * @return An array filled of element in column.
+     */
     public T[] getElements(){
-<span class="fc" id="L54">        return elements;</span>
+<span class="fc" id="L106">        return elements;</span>
     }
 
+    /**
+     * Returns the element at given index.
+     * Returns null if the index is out of range.
+     * @param index The element index.
+     * @return The requested element or null if error, or if it not exists.
+     */
     public T getElement(int index){
-<span class="fc" id="L58">        return elements[index];</span>
+<span class="pc bpc" id="L116" title="2 of 4 branches missed.">        if (index &lt; 0 || index &gt; elements.length)</span>
+<span class="nc" id="L117">            return null;</span>
+<span class="fc" id="L118">        return elements[index];</span>
     }
 
+    /**
+     * Returns the number of element in the column.
+     * @return The number of elements.
+     */
     public int getSize(){
-<span class="fc" id="L62">        return elements.length;</span>
+<span class="fc" id="L126">        return elements.length;</span>
     }
 
+    /**
+     * Returns mean value of column if and only if the column
+     * is of type Integer, or Float, or Double. Else, it will return null.
+     * @return The mean value computed.
+     */
+    public Double mean() {
+<span class="fc" id="L135">        Double sum = 0.;</span>
+<span class="fc bfc" id="L136" title="All 3 branches covered.">        switch (type){</span>
+            case &quot;Integer&quot;:
+<span class="fc bfc" id="L138" title="All 2 branches covered.">                for (T element : elements) {</span>
+<span class="fc" id="L139">                    sum += ((Integer) element).doubleValue();</span>
+                }
+<span class="fc" id="L141">                return sum/elements.length;</span>
+            case &quot;Float&quot;:
+<span class="fc bfc" id="L143" title="All 2 branches covered.">                for (T element : elements) {</span>
+<span class="fc" id="L144">                    sum += ((Float) element).doubleValue();</span>
+                }
+<span class="fc" id="L146">                return sum/elements.length;</span>
+            default:
+<span class="fc" id="L148">                return null;</span>
+        }
+    }
+
+    /**
+     * Returns the max value of column if and only if the column
+     * is of type Integer, or Float, or Double. Else, it will return null.
+     * @return The max value computed.
+     */
+    public Double max(){
+<span class="fc" id="L158">        Double max = null;</span>
+<span class="fc bfc" id="L159" title="All 3 branches covered.">        switch (type){</span>
+            case &quot;Integer&quot;:
+<span class="fc bfc" id="L161" title="All 2 branches covered.">                for (T element : elements) {</span>
+<span class="fc bfc" id="L162" title="All 4 branches covered.">                    if ( max == null || ((Integer) element).doubleValue() &gt; max)</span>
+<span class="fc" id="L163">                        max = ((Integer) element).doubleValue();</span>
+                }
+<span class="fc" id="L165">                return max;</span>
+            case &quot;Float&quot;:
+<span class="fc bfc" id="L167" title="All 2 branches covered.">                for (T element : elements) {</span>
+<span class="fc bfc" id="L168" title="All 4 branches covered.">                    if ( max == null || ((Float) element).doubleValue() &gt; max)</span>
+<span class="fc" id="L169">                        max = ((Float) element).doubleValue();</span>
+                }
+<span class="fc" id="L171">                return max;</span>
+            default:
+<span class="fc" id="L173">                return null;</span>
+        }
+    }
+
+    /* min :
+        Function that calculates min value of column if and only if the column
+        is of type Integer, or Float, or Double. Else, it will return null.
+     */
+
+    /**
+     * Returns the min value of column if and only if the column
+     * is of type Integer, or Float, or Double. Else, it will return null.
+     * @return The min value computed.
+     */
+    public Double min(){
+<span class="fc" id="L188">        Double min = null;</span>
+<span class="fc bfc" id="L189" title="All 3 branches covered.">        switch (type){</span>
+            case &quot;Integer&quot;:
+<span class="fc bfc" id="L191" title="All 2 branches covered.">                for (T element : elements) {</span>
+<span class="fc bfc" id="L192" title="All 4 branches covered.">                    if ( min == null || ((Integer) element).doubleValue() &lt; min)</span>
+<span class="fc" id="L193">                        min = ((Integer) element).doubleValue();</span>
+                }
+<span class="fc" id="L195">                return min;</span>
+            case &quot;Float&quot;:
+<span class="fc bfc" id="L197" title="All 2 branches covered.">                for (T element : elements) {</span>
+<span class="fc bfc" id="L198" title="All 4 branches covered.">                    if ( min == null || ((Float) element).doubleValue() &lt; min)</span>
+<span class="fc" id="L199">                        min = ((Float) element).doubleValue();</span>
+                }
+<span class="fc" id="L201">                return min;</span>
+            default:
+<span class="fc" id="L203">                return null;</span>
+        }
+    }
+
+    /**
+     * Returns a partial deep copy of current Column. The newly created Columns contains copies of every element
+     * at given index.
+     * @param indexes The array of indexes of elements in column to be copied in new Column.
+     * @return The newly created Column.
+     */
     public Column&lt;T&gt; createPartialCopy(int [] indexes){
-<span class="fc" id="L66">        return new Column&lt;&gt;(label, type, indexes, elements);</span>
+<span class="fc bfc" id="L214" title="All 2 branches covered.">        for (int i=0; i&lt;indexes.length; i++){</span>
+<span class="pc bpc" id="L215" title="2 of 4 branches missed.">            if (indexes[i] &lt; 0 || indexes[i] &gt; elements.length) return null;</span>
+        }
+<span class="fc" id="L217">        return new Column&lt;&gt;(label, type, indexes, elements);</span>
     }
 
+    /**
+     * Compares this Column to the specified object. The result is true if and only if the argument is not null and is a
+     * Column object that represents the same sequence of elements, and same type, as this object.
+     * If there are empty elements in a column, equals return false.
+     * @param obj The object to compare this Column against
+     * @return true if the given object represents a Column equivalent to this Column, false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
-<span class="pc bpc" id="L71" title="1 of 2 branches missed.">        if (getClass() != obj.getClass()) return false;</span>
-<span class="fc" id="L72">        Column col = (Column) obj;</span>
-<span class="fc bfc" id="L73" title="All 2 branches covered.">        if (col.getSize() != getSize()) return false;</span>
-<span class="pc bpc" id="L74" title="1 of 2 branches missed.">        if (!col.type.equals(type)) return false;</span>
-<span class="fc" id="L75">        boolean res = true;</span>
-<span class="fc bfc" id="L76" title="All 2 branches covered.">        for (int i = 0; i &lt; col.getSize() ;i++){</span>
-<span class="fc bfc" id="L77" title="All 4 branches covered.">            res = res &amp;&amp; col.getElement(i).equals(getElement(i));</span>
+<span class="pc bpc" id="L229" title="1 of 2 branches missed.">        if (getClass() != obj.getClass()) return false;</span>
+<span class="fc" id="L230">        Column col = (Column) obj;</span>
+<span class="fc bfc" id="L231" title="All 2 branches covered.">        if (col.getSize() != getSize()) return false;</span>
+<span class="pc bpc" id="L232" title="1 of 2 branches missed.">        if (!col.type.equals(type)) return false;</span>
+<span class="fc bfc" id="L233" title="All 4 branches covered.">        if (col.label == null &amp;&amp; label != null) return false;</span>
+<span class="pc bpc" id="L234" title="1 of 4 branches missed.">        if (col.label != null &amp;&amp; label == null) return false;</span>
+<span class="fc bfc" id="L235" title="All 4 branches covered.">        if (label != null &amp;&amp; !col.label.equals(label)) return false;</span>
+<span class="fc" id="L236">        boolean res = true;</span>
+<span class="fc bfc" id="L237" title="All 2 branches covered.">        for (int i = 0; i &lt; col.getSize() ;i++){</span>
+<span class="pc bpc" id="L238" title="1 of 4 branches missed.">            if (col.getElement(i) == null || getElement(i) == null) return false;</span>
+<span class="fc bfc" id="L239" title="All 4 branches covered.">            res = res &amp;&amp; col.getElement(i).equals(getElement(i));</span>
         }
-<span class="fc" id="L79">        return res;</span>
+<span class="fc" id="L241">        return res;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
