@@ -34,12 +34,17 @@ This project was made by:
     </tr>
 </table>
 
-You can access the documentation here [![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](https://mathysc.github.io/Jandas/)
+You can access the documentation here 
+
+[![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](https://mathysc.github.io/Jandas/)
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## The features provided by our service
-
-TODO: Copy this part in package description https://github.com/MathysC/Jandas/packages
+- Creation of DataFrame from a defined csv file, or from a set of columns.
+- Display of a whole or partial dataframe (last/first lines)
+- Creation of a new DataFrame from an existing one. We can choose the columns and lines that we want to keep.
+- Statistics functions on columns (mean, max, min)
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## The tool used
@@ -73,9 +78,19 @@ We were working on `features` and `CI` jobs at the same time. Everytime we thoug
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Docker
+## Docker 
 ##### If applicable, a list and a short description of the Docker images produced and a link to their repository.
+<a href="https://hub.docker.com/repository/docker/mathysclerget/jandas/general"><img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)" alt="Docker"></a>
 
+You can find here a simple *Docker repository* with an image that launch automatically the main in `Main.java`.
+
+The instruction are:
+```bash
+docker pull mathysclerget/jandas:latest
+```
+```bash
+docker run mathysclerget/jandas:latest
+```
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Feedback
