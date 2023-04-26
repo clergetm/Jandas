@@ -42,9 +42,9 @@ jobs:
             with:
               badges-directory: ${{ env.badge_path }}
               fail-if-coverage-less-than: ${{ env.min_coverage }}
-              generate-coverage-badge: false
               generate-summary: true
-          
+              generate-branches-badge: true
+
           # Add, commit and push the badge on the branch
           - name: Commit and push the badge (if it changed)
             uses: EndBug/add-and-commit@v9
@@ -67,11 +67,12 @@ jobs:
             with:
               token: ${{ secrets.DEVOPS_TOKEN }}
 
+              
     build:
       runs-on: ubuntu-latest
       needs: coverage
-      steps:
       
+      steps:
       # The checkout step downloads a copy of your repository on the runner.
       - name: Checkout
         uses: actions/checkout@v3 
@@ -112,6 +113,7 @@ jobs:
         uses: andymckay/cancel-action@0.3
         with:
           token: ${{ secrets.DEVOPS_TOKEN }}
+    
     deploy:
       runs-on: ubuntu-latest 
       needs: coverage
