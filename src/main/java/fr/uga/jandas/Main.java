@@ -48,8 +48,3 @@ class Main {
 
         System.out.println("   - Call to max()");
         System.out.println(roles.max());
-
-        System.out.println("   - Call to min()");
-        System.out.println(roles.min());
-    }
-}
