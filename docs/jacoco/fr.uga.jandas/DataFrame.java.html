@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataFrame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jandas</a> &gt; <a href="index.source.html" class="el_package">fr.uga.jandas</a> &gt; <span class="el_source">DataFrame.java</span></div><h1>DataFrame.java</h1><pre class="source lang-java linenums">package fr.uga.jandas;
+
+import java.io.FileInputStream;
+import java.text.DecimalFormat;
+import java.util.Objects;
+import java.util.Scanner;
+
+/**
+ * The Dataframe class represents a 2-dimensions array where each column is identified by a label and each line by an index.
+ * Two different columns can host two different types.
+ * &lt;p&gt;
+ * The Dataframe class includes methods for examinating individual or multiple elements of the array. Moreover there are
+ * functions that providing statistics on columns.
+ * &lt;p&gt;
+ * Below the actual file format attend to create a Dataframe from a file.
+ * Input file format with n the number of column and m the number of line :&lt;br&gt;
+ * t0,t1,...,tn&lt;br&gt;
+ * l0,l1,...,ln&lt;br&gt;
+ * e00,e01,...,e0n&lt;br&gt;
+ * e10,e11,...,e1n&lt;br&gt;
+ * ...,...,...,...&lt;br&gt;
+ * em0,em1,...,emn&lt;br&gt;
+ * The first line gives the type of each column. The second line gives the labels of each column. The following lines
+ * give the elements (data) to add in the DataFrame. Each cell is separated by a coma &lt;b&gt;without space&lt;/b&gt;.
+ *
+ * Columns are stored thanks to Column class, and each Column can store objects sharing the same type.
+ *
+ **/
+public class DataFrame {
+
+    Column [] columns;
+    int lines;
+    String [] labels;
+
+    /**
+     * Initialize a newly created DataFrame object so that it represent the 2D-array given in argument.
+     * Note that labels attribute is initialized with the labels written in columns.
+     * @param columns The array containing the columns with labels initialized.
+     */
+<span class="fc" id="L40">    DataFrame(Column [] columns){</span>
+<span class="fc" id="L41">        lines = columns[0].getSize();</span>
+<span class="fc" id="L42">        this.columns = columns;</span>
+
+<span class="fc" id="L44">        labels = new String[columns.length];</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        for (int l=0; l&lt;columns.length; l++){</span>
+<span class="fc" id="L46">            labels[l] = columns[l].getLabel();</span>
+        }
+<span class="fc" id="L48">    }</span>
+
+    /**
+     * Initialize a newly created DataFrame object so that it represent the 2D-array given a file name. This file need
+     * to follow the CSV format described on DataFrame documentation. Recall : &lt;br&gt;
+     * The first line gives the type of each column. The second line gives the labels of each column. The following lines
+     * give the elements (data) to add in the DataFrame. Each cell is separated by a coma &lt;b&gt;without space&lt;/b&gt;.
+     * @param filename The name of the file to create DataFrame from.
+     */
+<span class="fc" id="L57">    DataFrame(String filename){</span>
+        try {
+            // Counting the number of lines
+<span class="fc" id="L60">            FileInputStream file = new FileInputStream(filename);</span>
+<span class="fc" id="L61">            Scanner nbLineReader = new Scanner(file);</span>
+<span class="fc" id="L62">            int nbLines = -2; // We remove first and second line</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">            while (nbLineReader.hasNextLine()){</span>
+<span class="fc" id="L64">                nbLineReader.nextLine();</span>
+<span class="fc" id="L65">                nbLines++;</span>
+            }
+<span class="fc" id="L67">            nbLineReader.close();</span>
+
+            // Reading of lines
+<span class="fc" id="L70">            file = new FileInputStream(filename);</span>
+<span class="fc" id="L71">            Scanner scanner = new Scanner(file);</span>
+            // Defining type of each column
+<span class="fc" id="L73">            String[] types = scanner.nextLine().split(&quot;,&quot;);</span>
+<span class="fc" id="L74">            int nbCol = types.length;</span>
+<span class="fc" id="L75">            Column[] columns = new Column[types.length];</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">            for (int i=0; i&lt;nbCol; i++){</span>
+                Column aColumn;
+                // Parsing types
+<span class="pc bpc" id="L79" title="1 of 5 branches missed.">                switch (types[i]){</span>
+                    case &quot;Integer&quot;:
+<span class="fc" id="L81">                        aColumn = new Column&lt;Integer&gt;(&quot;Integer&quot;, nbLines);</span>
+<span class="fc" id="L82">                        break;</span>
+                    case &quot;String&quot;:
+<span class="fc" id="L84">                        aColumn = new Column&lt;String&gt;(&quot;String&quot;, nbLines);</span>
+<span class="fc" id="L85">                        break;</span>
+                    case &quot;Float&quot;:
+<span class="fc" id="L87">                        aColumn = new Column&lt;Float&gt;(&quot;Float&quot;, nbLines);</span>
+<span class="fc" id="L88">                        break;</span>
+                    case &quot;Boolean&quot;:
+<span class="fc" id="L90">                        aColumn = new Column&lt;Boolean&gt;(&quot;Boolean&quot;, nbLines);</span>
+<span class="fc" id="L91">                        break;</span>
+                    default:
+<span class="nc" id="L93">                        throw new Exception(&quot;Unknown column type !&quot;);</span>
+                }
+<span class="fc" id="L95">                columns[i] = aColumn;</span>
+            }
+
+            // Defining label of each column
+<span class="fc" id="L99">            String[] labels = scanner.nextLine().split(&quot;,&quot;);</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">            for (int i=0; i&lt;nbCol; i++){</span>
+<span class="fc" id="L101">                columns[i].setLabel(labels[i]);</span>
+            }
+<span class="fc" id="L103">            this.labels = labels;</span>
+
+<span class="fc" id="L105">            int lineCounter = 0;</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">            while(scanner.hasNextLine())</span>
+            {
+<span class="fc" id="L108">                String [] lineContent = scanner.nextLine().split(&quot;,&quot;);</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">                for (int c=0; c&lt;nbCol; c++){</span>
+<span class="pc bpc" id="L110" title="1 of 5 branches missed.">                    switch (types[c]){</span>
+                        case &quot;Integer&quot;:
+<span class="fc" id="L112">                            columns[c].addElement(Integer.parseInt(lineContent[c]), lineCounter);</span>
+<span class="fc" id="L113">                            break;</span>
+                        case &quot;String&quot;:
+<span class="fc" id="L115">                            columns[c].addElement(lineContent[c], lineCounter);</span>
+<span class="fc" id="L116">                            break;</span>
+                        case &quot;Float&quot;:
+<span class="fc" id="L118">                            columns[c].addElement(Float.parseFloat(lineContent[c]), lineCounter);</span>
+<span class="fc" id="L119">                            break;</span>
+                        case &quot;Boolean&quot;:
+<span class="fc" id="L121">                            columns[c].addElement(Boolean.parseBoolean(lineContent[c]), lineCounter);</span>
+<span class="fc" id="L122">                            break;</span>
+                        default:
+<span class="nc" id="L124">                            throw new Exception(&quot;Unknown column type !&quot;);</span>
+                    }
+                }
+<span class="fc" id="L127">                lineCounter += 1;</span>
+<span class="fc" id="L128">            }</span>
+<span class="fc" id="L129">            scanner.close();</span>
+
+<span class="fc" id="L131">            this.lines = nbLines;</span>
+<span class="fc" id="L132">            this.columns = columns;</span>
+
+<span class="nc" id="L134">        } catch (Exception e){</span>
+<span class="nc" id="L135">            e.printStackTrace();</span>
+<span class="fc" id="L136">        }</span>
+<span class="fc" id="L137">    }</span>
+
+    /**
+     * Returns the column localized at given index.
+     * @param index The column index.
+     * @return The requested column.
+     */
+    public Column getColumn(int index){
+<span class="fc" id="L145">        return columns[index];</span>
+    }
+
+    /**
+     * Returns the column identified by given label. Returns null if there is not a column labelled with this label.
+     * @param label The column label.
+     * @return The requested column or null.
+     */
+    public Column getColumn(String label){
+<span class="fc bfc" id="L154" title="All 2 branches covered.">        for (int l=0; l&lt; columns.length; l++){</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">            if (Objects.equals(columns[l].getLabel(), label)){</span>
+<span class="fc" id="L156">                return columns[l];</span>
+            }
+        }
+<span class="fc" id="L159">        return null;</span>
+    }
+
+    /**
+     * Returns the line identified by given index.
+     * @param index The index of requested line.
+     * @return The object array containing requested elements.
+     */
+    public Object[] getLine(int index){
+<span class="pc bpc" id="L168" title="1 of 4 branches missed.">        if ( index &lt; 0 || index &gt; lines)</span>
+<span class="fc" id="L169">            throw new IndexOutOfBoundsException();</span>
+<span class="fc" id="L170">        Object [] chosen_lines = new Object[columns.length];</span>
+<span class="fc bfc" id="L171" title="All 2 branches covered.">        for (int i = 0; i &lt; columns.length; i++){</span>
+<span class="fc" id="L172">            chosen_lines[i] = columns[i].getElement(index);</span>
+        }
+<span class="fc" id="L174">        return chosen_lines;</span>
+    }
+
+    /**
+     * Returns the element localized at given column and lineIndex index. Return null if an index is out of range.
+     * @param colIndex The column index of accessed element.
+     * @param lineIndex The line index of accessed element.
+     * @return The requested element or null.
+     */
+    public Object getElement(int colIndex, int lineIndex){
+        try {
+<span class="fc" id="L185">            return columns[colIndex].getElement(lineIndex);</span>
+<span class="nc" id="L186">        } catch (IndexOutOfBoundsException e){</span>
+<span class="nc" id="L187">            return null;</span>
+        }
+    }
+
+    /**
+     * Returns an array containing each labels in order of attribute column array.
+     * @return The labels array
+     */
+    public String [] getLabels() {
+<span class="nc" id="L196">        return labels;</span>
+    }
+
+    /**
+     * Prints the mean value calculated of each column. If the mean is not calculable, it prints NaN instead.
+     *  @return a String with column labels and mean values such as :
+     *      Age name
+     *  mean 34.6 NaN
+     */
+    public String mean(){
+<span class="fc" id="L206">        StringBuilder str = new StringBuilder(&quot;     &quot;);</span>
+<span class="fc" id="L207">        DecimalFormat df = new DecimalFormat(&quot;0.#&quot;);</span>
+<span class="fc bfc" id="L208" title="All 2 branches covered.">        for (String l: labels){</span>
+<span class="fc" id="L209">            str.append(l).append(&quot; &quot;);</span>
+        }
+<span class="fc" id="L211">        str.append(&quot;\nmean &quot;);</span>
+
+<span class="fc bfc" id="L213" title="All 2 branches covered.">        for (Column c: columns){</span>
+<span class="fc" id="L214">            Double res = c.mean();</span>
+<span class="fc bfc" id="L215" title="All 2 branches covered.">            if (res == null)</span>
+<span class="fc" id="L216">                str.append(&quot; NaN&quot;);</span>
+            else
+<span class="fc" id="L218">                str.append(&quot; &quot;).append(df.format(res));</span>
+        }
+<span class="fc" id="L220">        str.append(&quot;\n&quot;);</span>
+<span class="fc" id="L221">        return str.toString();</span>
+    }
+
+    /**
+     * Prints the max value calculated of each column. If the max is not calculable, it prints NaN instead.
+     *  @return a String with column labels and max values such as :
+     *      Age name
+     * max 88 NaN
+     */
+    public String max(){
+<span class="fc" id="L231">        StringBuilder str = new StringBuilder(&quot;     &quot;);</span>
+<span class="fc" id="L232">        DecimalFormat df = new DecimalFormat(&quot;0.#&quot;);</span>
+<span class="fc bfc" id="L233" title="All 2 branches covered.">        for (String l: labels){</span>
+<span class="fc" id="L234">            str.append(l).append(&quot; &quot;);</span>
+        }
+<span class="fc" id="L236">        str.append(&quot;\nmax &quot;);</span>
+
+<span class="fc bfc" id="L238" title="All 2 branches covered.">        for (Column c: columns){</span>
+<span class="fc" id="L239">            Double res = c.max();</span>
+<span class="fc bfc" id="L240" title="All 2 branches covered.">            if (res == null)</span>
+<span class="fc" id="L241">                str.append(&quot; NaN&quot;);</span>
+            else
+<span class="fc" id="L243">                str.append(&quot; &quot;).append(df.format(res));</span>
+        }
+<span class="fc" id="L245">        str.append(&quot;\n&quot;);</span>
+<span class="fc" id="L246">        return str.toString();</span>
+    }
+
+    /**
+     *  Prints the min value calculated of each column. If the min is not calculable, it prints NaN instead.
+     *  @return a String with column labels and min values such as :
+     *      Age name
+     * min 3 NaN
+     */
+    public String min(){
+<span class="fc" id="L256">        StringBuilder str = new StringBuilder(&quot;     &quot;);</span>
+<span class="fc" id="L257">        DecimalFormat df = new DecimalFormat(&quot;0.#&quot;);</span>
+<span class="fc bfc" id="L258" title="All 2 branches covered.">        for (String l: labels){</span>
+<span class="fc" id="L259">            str.append(l).append(&quot; &quot;);</span>
+        }
+<span class="fc" id="L261">        str.append(&quot;\nmin &quot;);</span>
+
+<span class="fc bfc" id="L263" title="All 2 branches covered.">        for (Column c: columns){</span>
+<span class="fc" id="L264">            Double res = c.min();</span>
+<span class="fc bfc" id="L265" title="All 2 branches covered.">            if (res == null)</span>
+<span class="fc" id="L266">                str.append(&quot; NaN&quot;);</span>
+            else
+<span class="fc" id="L268">                str.append(&quot; &quot;).append(df.format(res));</span>
+        }
+<span class="fc" id="L270">        str.append(&quot;\n&quot;);</span>
+<span class="fc" id="L271">        return str.toString();</span>
+    }
+
+    /**
+     * Returns a new Dataframe initialized given a column set of current Dataframe. Note that this is a deep copy,
+     * there are new objects used in this newly created DataFrame. Moreover, it can be many times the same label in the given column set.
+     * Returns null a label is unknown.
+     * @param labels The columns label to add in the new DataFrame.
+     * @return The newly created DataFrame or null.
+     */
+    public DataFrame createFrom(String [] labels){
+<span class="fc" id="L282">        Column [] cols = new Column[labels.length];</span>
+<span class="fc bfc" id="L283" title="All 2 branches covered.">        for (int l=0; l&lt;labels.length; l++){</span>
+<span class="fc" id="L284">            Column c = getColumn(labels[l]);</span>
+<span class="pc bpc" id="L285" title="1 of 2 branches missed.">            if (c == null) return null;</span>
+<span class="fc" id="L286">            cols[l] = c;</span>
+        }
+<span class="fc" id="L288">        return new DataFrame(cols);</span>
+    }
+
+    /**
+     * Returns a new Dataframe initialized given a line set of current DataFrame. It uses function createPartialCopy()
+     * from the class Column on each column, a function that returns a deep copy with only specified lines. Note that this is a deep copy,
+     * there are new objects used in this newly created DataFrame.
+     * Returns null if an index is out of range.
+     * @param indexes The indexes set to add in the new DataFrame.
+     * @return The newly created DataFrame or null.
+     */
+    public DataFrame createFrom(int [] indexes){
+<span class="fc" id="L300">        Column [] newCols = new Column[columns.length];</span>
+<span class="fc bfc" id="L301" title="All 2 branches covered.">        for (int i=0; i&lt;columns.length; i++){</span>
+<span class="fc" id="L302">            Column c = columns[i].createPartialCopy(indexes);</span>
+<span class="pc bpc" id="L303" title="1 of 2 branches missed.">            if (c == null) return null;</span>
+<span class="fc" id="L304">            newCols[i] = c;</span>
+        }
+<span class="fc" id="L306">        return new DataFrame(newCols);</span>
+    }
+
+    /**
+     * Returns a new DataFrame initialized given a line and column set of current DataFrame. Only lines of indexes referenced
+     * in parameter are present in obtained columns. Note that this is a deep copy,
+     * there are new objects used in this newly created DataFrame.
+     * Returns null if an index is out of range or a labels is unknown.
+     * @param labels The columns label to add in the new DataFrame.
+     * @param lines The indexes set to add in the new DataFrame.
+     * @return The newly created Dataframe based on the given selection and projection or null.
+     */
+    public DataFrame createFrom(String [] labels, int [] lines){
+<span class="fc" id="L319">        Column [] cols = new Column[labels.length];</span>
+<span class="fc bfc" id="L320" title="All 2 branches covered.">        for (int l=0; l&lt;labels.length; l++){</span>
+<span class="fc" id="L321">            Column c = getColumn(labels[l]);</span>
+<span class="pc bpc" id="L322" title="1 of 2 branches missed.">            if (c == null) return null;</span>
+<span class="fc" id="L323">            cols[l] = c;</span>
+        }
+<span class="fc" id="L325">        Column [] newCols = new Column[labels.length];</span>
+<span class="fc bfc" id="L326" title="All 2 branches covered.">        for (int i=0; i&lt;cols.length; i++){</span>
+<span class="fc" id="L327">            Column c2 = cols[i].createPartialCopy(lines);</span>
+<span class="fc" id="L328">            newCols[i] = c2;</span>
+        }
+<span class="fc" id="L330">        return new DataFrame(newCols);</span>
+    }
+
+    private void print(int start, int end){
+<span class="nc" id="L334">        System.out.print(toString(start, end));</span>
+<span class="nc" id="L335">    }</span>
+
+    /**
+     * Prints the entire DataFrame.
+     */
+    public void print(){
+<span class="nc" id="L341">        print(0, lines);</span>
+<span class="nc" id="L342">    }</span>
+
+    /**
+     * Prints the DataFrame given first lines.
+     * @param nbLines The number of lines to display.
+     */
+    public void printFirstLines(int nbLines){
+<span class="nc" id="L349">        print(0, nbLines);</span>
+<span class="nc" id="L350">    }</span>
+
+    /**
+     * Prints the DataFrame given first lines.
+     * @param nbLines The number of lines to display.
+     */
+    public void printLastLines(int nbLines){
+<span class="nc" id="L357">        print(lines-nbLines, lines);</span>
+<span class="nc" id="L358">    }</span>
+
+    /**
+     * Returns a String object representing this DataFrame's value.
+     * @return a string representation of the value of this object like an array.
+     */
+    @Override
+    public String toString(){
+<span class="fc" id="L366">        return toString(0, lines);</span>
+    }
+
+    /**
+     * Returns a String object representing a subset of this DataFrame's value .
+     * @param start is the first line to be display. Previous one are not consider.
+     * @param end is the last line to be display. Further lines are not consider.
+     * @return a string representation of the value of this object like an array.
+     */
+    public String toString(int start, int end){
+<span class="fc" id="L376">        StringBuilder str = new StringBuilder();</span>
+<span class="fc" id="L377">        str.append(&quot;[ &quot;);</span>
+<span class="fc bfc" id="L378" title="All 2 branches covered.">        for (int c=0; c&lt;columns.length; c++){</span>
+<span class="fc" id="L379">            str.append(columns[c].getLabel()).append(&quot; &quot;);</span>
+        }
+<span class="fc" id="L381">        str.append(&quot;\n  &quot;);</span>
+<span class="fc bfc" id="L382" title="All 2 branches covered.">        for (int i=start; i&lt;end; i++){</span>
+<span class="fc" id="L383">            Object[] line = getLine(i);</span>
+<span class="fc bfc" id="L384" title="All 2 branches covered.">            for (int j=0; j&lt;columns.length; j++){</span>
+<span class="fc" id="L385">                str.append(line[j]).append(&quot; &quot;);</span>
+            }
+<span class="fc bfc" id="L387" title="All 2 branches covered.">            if (i != end -1 ) str.append(&quot;\n  &quot;);</span>
+        }
+<span class="fc" id="L389">        str.append(&quot;]&quot;);</span>
+<span class="fc" id="L390">        return str.toString();</span>
+    }
+
+    /**
+     * Compares this DataFrame to the specified object. The result is true if and only if the argument is not null and is a
+     * DataFrame object that represents the same sequence of elements as this object.
+     * @param obj The object to compare this DataFrame against
+     * @return true if the given object represents a DataFrame equivalent to this DataFrame, false otherwise
+     */
+    @Override
+    public boolean equals(Object obj) {
+<span class="pc bpc" id="L401" title="1 of 2 branches missed.">        if (getClass() != obj.getClass()) return false;</span>
+<span class="fc" id="L402">        DataFrame df = (DataFrame) obj;</span>
+<span class="pc bpc" id="L403" title="1 of 2 branches missed.">        if (lines != df.lines) return false;</span>
+<span class="pc bpc" id="L404" title="1 of 2 branches missed.">        if ( labels.length != df.labels.length) return false;</span>
+<span class="fc" id="L405">        boolean res = true;</span>
+<span class="fc bfc" id="L406" title="All 2 branches covered.">        for (int i = 0; i &lt; columns.length; i++){</span>
+<span class="pc bpc" id="L407" title="1 of 4 branches missed.">            res = res &amp;&amp; (columns[i].equals(df.columns[i]));</span>
+<span class="pc bpc" id="L408" title="1 of 4 branches missed.">            res = res &amp;&amp; (labels[i].equals(df.labels[i]));</span>
+        }
+<span class="fc" id="L410">        return res;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
