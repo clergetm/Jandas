@@ -62,7 +62,7 @@ public class Column<T>{
     }
 
     /* mean :
-        Function that calculate mean value of column if and only if the column
+        Function that calculates mean value of column if and only if the column
         is of type Integer, or Float, or Double. Else, it will return null.
      */
     public Double mean() {
@@ -83,6 +83,66 @@ public class Column<T>{
                     sum += (Double) element;
                 }
                 return sum/elements.length;
+            default:
+                return null;
+        }
+    }
+
+    /* max :
+        Function that calculates max value of column if and only if the column
+        is of type Integer, or Float, or Double. Else, it will return null.
+     */
+    public Double max(){
+        Double max = null;
+        switch (type){
+            case "Integer":
+                for (T element : elements) {
+                    if ( max == null || ((Integer) element).doubleValue() > max)
+                        max = ((Integer) element).doubleValue();
+                }
+                return max;
+            case "Float":
+                for (T element : elements) {
+                    if ( max == null || ((Float) element).doubleValue() > max)
+                        max = ((Float) element).doubleValue();
+                }
+                return max;
+            case "Double":
+                for (T element : elements) {
+                    if ( max == null || ((Double) element) > max)
+                        max = (Double) element;
+                }
+                return max;
+            default:
+                return null;
+        }
+    }
+
+    /* min :
+        Function that calculates min value of column if and only if the column
+        is of type Integer, or Float, or Double. Else, it will return null.
+     */
+    public Double min(){
+        Double min = null;
+        switch (type){
+            case "Integer":
+                for (T element : elements) {
+                    if ( min == null || ((Integer) element).doubleValue() < min)
+                        min = ((Integer) element).doubleValue();
+                }
+                return min;
+            case "Float":
+                for (T element : elements) {
+                    if ( min == null || ((Float) element).doubleValue() < min)
+                        min = ((Float) element).doubleValue();
+                }
+                return min;
+            case "Double":
+                for (T element : elements) {
+                    if ( min == null || ((Double) element) < min)
+                        min = (Double) element;
+                }
+                return min;
             default:
                 return null;
         }

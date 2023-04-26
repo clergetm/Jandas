@@ -13,7 +13,5 @@ public class App
         DataFrame dataFrame = new DataFrame("src/main/resources/test.txt");
         dataFrame.print();
 
-        dataFrame.mean();
-
     }
 }

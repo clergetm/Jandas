@@ -155,7 +155,7 @@ public class DataFrame {
         return columns[colIndex].getElement(lineIndex);
     }
 
-    public String [] getLabels(){
+    public String [] getLabels() {
         return labels;
     }
 
@@ -167,7 +167,7 @@ public class DataFrame {
         StringBuilder str = new StringBuilder("     ");
         DecimalFormat df = new DecimalFormat("0.#");
         for (String l: labels){
-            str.append(l +" ");
+            str.append(l).append(" ");
         }
         str.append("\nmean");
 
@@ -176,11 +176,58 @@ public class DataFrame {
             if (res == null)
                 str.append(" NaN ");
             else
-                str.append(df.format(res)+" ");
+                str.append(df.format(res)).append(" ");
         }
         str.append("\n");
         System.out.println(str);
     }
+
+    /* max :
+    Prints the max value calculated of each column. If the max is not calculable,
+    it prints NaN.
+     */
+    public void max(){
+        StringBuilder str = new StringBuilder("     ");
+        DecimalFormat df = new DecimalFormat("0.#");
+        for (String l: labels){
+            str.append(l).append(" ");
+        }
+        str.append("\nmax");
+
+        for (Column c: columns){
+            Double res = c.max();
+            if (res == null)
+                str.append(" NaN ");
+            else
+                str.append(df.format(res)).append(" ");
+        }
+        str.append("\n");
+        System.out.println(str);
+    }
+
+    /* min :
+    Prints the min value calculated of each column. If the min is not calculable,
+    it prints NaN.
+     */
+    public void min(){
+        StringBuilder str = new StringBuilder("     ");
+        DecimalFormat df = new DecimalFormat("0.#");
+        for (String l: labels){
+            str.append(l).append(" ");
+        }
+        str.append("\nmin");
+
+        for (Column c: columns){
+            Double res = c.min();
+            if (res == null)
+                str.append(" NaN ");
+            else
+                str.append(df.format(res)).append(" ");
+        }
+        str.append("\n");
+        System.out.println(str);
+    }
+
 
     /* createFrom :
         Creates a new Dataframe based on a column set of current Dataframe.
