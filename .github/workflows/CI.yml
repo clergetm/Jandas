@@ -3,8 +3,9 @@ run-name: Continuous Integration on ${{ github.event_name }} by ${{ github.trigg
 
 on:
     pull_request:
-      branches:
-        - dev
+      branches: dev
+    push:
+        branches: dev
 
 jobs:
     coverage:
