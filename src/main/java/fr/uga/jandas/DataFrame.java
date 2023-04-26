@@ -1,7 +1,6 @@
 package fr.uga.jandas;
 
 import java.io.FileInputStream;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Scanner;
@@ -95,7 +94,25 @@ public class DataFrame {
             {
                 String [] lineContent = scanner.nextLine().split(",");
                 for (int c=0; c<nbCol; c++){
-                    columns[c].addElement(lineContent[c], lineCounter);
+                    switch (types[c]){
+                        case "Integer":
+                            columns[c].addElement(Integer.parseInt(lineContent[c]), lineCounter);
+                            break;
+                        case "String":
+                            columns[c].addElement(lineContent[c], lineCounter);
+                            break;
+                        case "Float":
+                            columns[c].addElement(Float.parseFloat(lineContent[c]), lineCounter);
+                            break;
+                        case "Boolean":
+                            columns[c].addElement(Boolean.parseBoolean(lineContent[c]), lineCounter);
+                            break;
+                        case "Date":
+                            columns[c].addElement((lineContent[c]), lineCounter);
+                            throw new Exception("Dates not implemented yet !");
+                        default:
+                            throw new Exception("Unknown column type !");
+                    }
                 }
                 lineCounter += 1;
             }
@@ -213,6 +230,12 @@ public class DataFrame {
         if (getClass() != obj.getClass()) return false;
         DataFrame df = (DataFrame) obj;
         if (lines != df.lines) return false;
-        return Arrays.equals(columns, df.columns);
+        if ( labels.length != df.labels.length) return false;
+        boolean res = true;
+        for (int i = 0; i < columns.length; i++){
+            res = res && (columns[i].equals(df.columns[i]));
+            res = res && (labels[i].equals(df.labels[i]));
+        }
+        return res;
     }
 }

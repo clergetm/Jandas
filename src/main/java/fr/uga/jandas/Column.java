@@ -1,6 +1,5 @@
 package fr.uga.jandas;
 
-import java.util.Arrays;
 
 @SuppressWarnings("unchecked")
 public class Column<T>{
@@ -51,6 +50,10 @@ public class Column<T>{
         if (getClass() != obj.getClass()) return false;
         Column col = (Column) obj;
         if (col.getSize() != getSize()) return false;
-        return Arrays.equals(col.getElements(), getElements());
+        boolean res = true;
+        for (int i = 0; i < col.getSize() ;i++){
+            res = res && col.getElement(i).equals(getElement(i));
+        }
+        return res;
     }
 }
