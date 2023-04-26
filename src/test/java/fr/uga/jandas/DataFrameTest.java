@@ -117,7 +117,7 @@ public class DataFrameTest {
 
 
     @Test
-    void createFrom() {
+    void TestCreateFrom1() {
         String filename = "src/test/resources/Test2.csv";
         DataFrame dft = new DataFrame(filename);
         String[] labels = {"B", "C"};
@@ -131,14 +131,14 @@ public class DataFrameTest {
     }
 
     @Test
-    void testCreateFrom() {
+    void testCreateFrom2() {
         String filename = "src/test/resources/Test2.csv";
         DataFrame dft = new DataFrame(filename);
-        int[] indexe1 = {1};
+        int[] indexe1 = {0};
         DataFrame d2 = dft.createFrom(indexe1);
         DataFrame dft2 = new DataFrame("src/test/resources/DF_L1.csv");
         assertEquals(dft2, d2);
-        int[] indexe2 = {2};
+        int[] indexe2 = {1};
         d2 = dft.createFrom(indexe2);
         dft2 = new DataFrame("src/test/resources/DF_L2.csv");
         assertEquals(dft2, d2);
@@ -146,10 +146,10 @@ public class DataFrameTest {
     }
 
     @Test
-    void testCreateFrom1() {
+    void testCreateFrom3() {
         String filename = "src/test/resources/Test2.csv";
         DataFrame dft = new DataFrame(filename);
-        int[] indexe1 = {1};
+        int[] indexe1 = {0};
         String[] labels = {"B", "C"};
         DataFrame d2 = dft.createFrom(labels, indexe1);
         DataFrame dft2 = new DataFrame("src/test/resources/DF_L1BC.csv");
