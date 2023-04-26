@@ -199,67 +199,67 @@ public class DataFrame {
     /**
      * Prints the mean value calculated of each column. If the mean is not calculable, it prints NaN instead.
      */
-    public void mean(){
+    public String mean(){
         StringBuilder str = new StringBuilder("     ");
         DecimalFormat df = new DecimalFormat("0.#");
         for (String l: labels){
             str.append(l).append(" ");
         }
-        str.append("\nmean");
+        str.append("\nmean ");
 
         for (Column c: columns){
             Double res = c.mean();
             if (res == null)
-                str.append(" NaN ");
+                str.append(" NaN");
             else
-                str.append(df.format(res)).append(" ");
+                str.append(" ").append(df.format(res));
         }
         str.append("\n");
-        System.out.println(str);
+        return str.toString();
     }
 
     /**
      * Prints the max value calculated of each column. If the max is not calculable, it prints NaN instead.
      */
-    public void max(){
+    public String max(){
         StringBuilder str = new StringBuilder("     ");
         DecimalFormat df = new DecimalFormat("0.#");
         for (String l: labels){
             str.append(l).append(" ");
         }
-        str.append("\nmax");
+        str.append("\nmax ");
 
         for (Column c: columns){
             Double res = c.max();
             if (res == null)
-                str.append(" NaN ");
+                str.append(" NaN");
             else
-                str.append(df.format(res)).append(" ");
+                str.append(" ").append(df.format(res));
         }
         str.append("\n");
-        System.out.println(str);
+        return str.toString();
     }
 
     /**
      *  Prints the min value calculated of each column. If the min is not calculable, it prints NaN instead.
      */
-    public void min(){
+    public String min(){
         StringBuilder str = new StringBuilder("     ");
         DecimalFormat df = new DecimalFormat("0.#");
         for (String l: labels){
             str.append(l).append(" ");
         }
-        str.append("\nmin");
+        str.append("\nmin ");
 
         for (Column c: columns){
             Double res = c.min();
             if (res == null)
-                str.append(" NaN ");
+                str.append(" NaN");
             else
-                str.append(df.format(res)).append(" ");
+                str.append(" ").append(df.format(res));
         }
         str.append("\n");
-        System.out.println(str);
+        return str.toString();
     }
 
     /**

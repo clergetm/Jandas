@@ -220,6 +220,7 @@ public class Column<T>{
     /**
      * Compares this Column to the specified object. The result is true if and only if the argument is not null and is a
      * Column object that represents the same sequence of elements, and same type, as this object.
+     * If there are empty elements in a column, equals return false.
      * @param obj The object to compare this Column against
      * @return true if the given object represents a Column equivalent to this Column, false otherwise
      */
@@ -234,6 +235,7 @@ public class Column<T>{
         if (label != null && !col.label.equals(label)) return false;
         boolean res = true;
         for (int i = 0; i < col.getSize() ;i++){
+            if (col.getElement(i) == null || getElement(i) == null) return false;
             res = res && col.getElement(i).equals(getElement(i));
         }
         return res;
