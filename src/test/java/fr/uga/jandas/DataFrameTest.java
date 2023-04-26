@@ -149,7 +149,7 @@ public class DataFrameTest {
     }
 
     @Test
-    void testCreateFrom2() {
+    void TestCreateFrom2() {
         String filename = "src/test/resources/Test2.csv";
         DataFrame dft = new DataFrame(filename);
         int[] indexe1 = {0};
@@ -164,7 +164,7 @@ public class DataFrameTest {
     }
 
     @Test
-    void testCreateFrom3() {
+    void TestCreateFrom3() {
         String filename = "src/test/resources/Test2.csv";
         DataFrame dft = new DataFrame(filename);
         int[] indexe1 = {0};
@@ -187,5 +187,61 @@ public class DataFrameTest {
             if (i==0 || i == lines.length-1) assertEquals(4, s.split(" ").length);
             else assertEquals(5, s.split(" ").length);
         }
+    }
+
+    @Test
+    void TestMin(){
+        DataFrame dft = new DataFrame("src/test/resources/Test1.csv");
+        String[] str = dft.min().split("\n");
+        String[] res = str[1].split(" ");
+        assertEquals("1", res[2]);
+        assertEquals("2", res[3]);
+        assertEquals("3", res[4]);
+        dft = new DataFrame("src/test/resources/Test3.csv");
+        str = dft.min().split("\n");
+        res = str[1].split(" ");
+        assertEquals("NaN", res[2]);
+        assertEquals("NaN", res[3]);
+        assertEquals("2", res[4]);
+        assertEquals("NaN", res[5]);
+        assertEquals("80.2", res[6]);
+    }
+
+    @Test
+    void TestMax(){
+        DataFrame dft = new DataFrame("src/test/resources/Test1.csv");
+        String[] str = dft.max().split("\n");
+        String[] res = str[1].split(" ");
+        assertEquals("4", res[2]);
+        assertEquals("5", res[3]);
+        assertEquals("6", res[4]);
+        dft = new DataFrame("src/test/resources/Test3.csv");
+        str = dft.max().split("\n");
+        res = str[1].split(" ");
+        assertEquals("NaN", res[2]);
+        assertEquals("NaN", res[3]);
+        assertEquals("87", res[4]);
+        assertEquals("NaN", res[5]);
+        assertEquals("205", res[6]);
+    }
+
+    @Test
+    void TestMean(){
+        DataFrame dft = new DataFrame("src/test/resources/Test1.csv");
+        System.out.println(dft.mean());
+        String[] str = dft.mean().split("\n");
+        String[] res = str[1].split(" ");
+        assertEquals("2.5", res[2]);
+        assertEquals("3.5", res[3]);
+        assertEquals("4.5", res[4]);
+        dft = new DataFrame("src/test/resources/Test3.csv");
+        System.out.println(dft.mean());
+        str = dft.mean().split("\n");
+        res = str[1].split(" ");
+        assertEquals("NaN", res[2]);
+        assertEquals("NaN", res[3]);
+        assertEquals("31.8", res[4]);
+        assertEquals("NaN", res[5]);
+        assertEquals("154", res[6]);
     }
 }
