@@ -8,11 +8,9 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
-        DataFrame dataFrame = new DataFrame("test.txt");
-        System.out.println(dataFrame);
+        System.out.println( "Dataframe demonstration : " +
+                "We create and print a Dataframe from 'src/main/resources/test.txt'" );
+        DataFrame dataFrame = new DataFrame("src/main/resources/test.txt");
         dataFrame.print();
-        dataFrame.printFirstLines(2);
-        dataFrame.printLastLines(2);
     }
 }
