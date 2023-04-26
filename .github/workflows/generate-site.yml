@@ -64,7 +64,7 @@ jobs:
           default_author: ${{ env.ci_commit_author }}
           message: '${{ env.ci_commit_message }}'
           add: 'docs/*'
-          pull: origin dev --set-upstream --force
+          pull: origin
 
   # Build job
   build:
