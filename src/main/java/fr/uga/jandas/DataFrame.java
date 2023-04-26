@@ -153,10 +153,16 @@ public class DataFrame {
 
     /* createFrom :
     Create a new Dataframe based on a line set of current Dataframe.
+    It uses createPartialCopy() for every column, a function that returns
+    a copy with only specified lines.
  */
     public DataFrame createFrom(int [] indexes){
-        //TODO
-        return null;
+        Column [] newCols = new Column[columns.length];
+        for (int i=0; i<columns.length; i++){
+            newCols[i] = columns[i].createPartialCopy(indexes);
+        }
+
+        return new DataFrame(newCols);
     }
 
 
