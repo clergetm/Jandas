@@ -53,6 +53,9 @@ public class DataFrameTest {
         // test ligne 2
         Object [] line2r = df.getLine(1);
         assertArrayEquals(lin2, line2r);
+        assertThrows(IndexOutOfBoundsException.class, () -> {df.getLine(2);});
+        assertThrows(IndexOutOfBoundsException.class, () -> {df.getLine(-1);});
+
     }
 
     @Test
@@ -100,6 +103,19 @@ public class DataFrameTest {
         assertEquals(a, 4);
         assertEquals(b, "Jo");
         assertEquals(c, 666.1F);
+        dft = new DataFrame("src/test/resources/Test3.csv");
+        a = (Integer) dft.getElement(2,2);
+        b = (String) dft.getElement(1,0);
+        c = (Float) dft.getElement(4,3);
+        Boolean d = (Boolean) dft.getElement(0,0);
+        assertEquals(a, 87);
+        assertEquals(b, "Alice");
+        assertEquals(c, 80.2F);
+        assertEquals(d, true);
+        d = (Boolean) dft.getElement(0,1);
+        assertEquals(d, false);
+        b = (String) dft.getElement(3,1);
+        assertEquals(b, "Marseille");
     }
 
     @Test
@@ -113,6 +129,8 @@ public class DataFrameTest {
         // test col 3
         Column col3r = df.getColumn("C");
         assertEquals(col3r, c3);
+        Column colerr = df.getColumn("Zou");
+        assertNull(colerr);
     }
 
 
@@ -154,5 +172,20 @@ public class DataFrameTest {
         DataFrame d2 = dft.createFrom(labels, indexe1);
         DataFrame dft2 = new DataFrame("src/test/resources/DF_L1BC.csv");
         assertEquals(dft2, d2);
+    }
+
+    @Test
+    void testToString(){
+        String filename = "src/test/resources/Test2.csv";
+        DataFrame dft = new DataFrame(filename);
+        String str = dft.toString();
+        String[] lines = str.split("\n");
+        assertEquals(3, lines.length);
+        for (int i = 0; i > lines.length; i++){
+            String s = lines[i];
+            System.out.println(s);
+            if (i==0 || i == lines.length-1) assertEquals(4, s.split(" ").length);
+            else assertEquals(5, s.split(" ").length);
+        }
     }
 }
