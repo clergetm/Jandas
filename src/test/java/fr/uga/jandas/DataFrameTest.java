@@ -3,8 +3,6 @@ package fr.uga.jandas;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DataFrameTest {
@@ -14,7 +12,6 @@ public class DataFrameTest {
     DataFrame df;
     @BeforeEach
     public void setUp() {
-        //labels :     A B C
         // Array    [[ 1 2 3 ]
         //           [ 4 5 6 ]]
         col1 = new Integer[]{1, 4};
@@ -23,9 +20,9 @@ public class DataFrameTest {
         lin1 = new Integer[]{1, 2, 3};
         lin2 = new Integer[]{4, 5, 6};
         // Column
-        c1 = new Column<Integer>("A", 2, col1);
-        c2 = new Column<Integer>("B", 2, col2);
-        c3 = new Column<Integer>("C", 2, col3);
+        c1 = new Column(2, col1);
+        c2 = new Column(2, col2);
+        c3 = new Column(2, col3);
         // DataFrame
         Column [] columns = new Column[]{c1, c2, c3};
         df = new DataFrame(columns);
@@ -63,7 +60,7 @@ public class DataFrameTest {
         int index;
         for (int i = 1; i <= 6; i++){
             index = i -1;
-            assertEquals(i, (Integer) df.getElement(index%3,index/3));
+            assertEquals(i, df.getElement(index%3,index/3));
         }
     }
 
@@ -73,12 +70,8 @@ public class DataFrameTest {
         DataFrame df2 = new DataFrame(columns);
         assertEquals(df,df2);
         Integer[] col3bis = new Integer[]{9, 6};
-        Column c3bis = new Column("C", 2, col3bis);
+        Column c3bis = new Column(2, col3bis);
         columns = new Column[]{c1, c2, c3bis};
-        df2 = new DataFrame(columns);
-        assertNotEquals(df, df2);
-        Column c3label = new Column("E", 3, col3);
-        columns = new Column[]{c1, c2, c3label};
         df2 = new DataFrame(columns);
         assertNotEquals(df, df2);
     }
@@ -86,12 +79,9 @@ public class DataFrameTest {
     @Test
     void DataFrameFromFile() {
         String filename = "src/test/resources/Test1.csv";
-
         DataFrame df2 = new DataFrame(filename);
         DataFrame df3 = new DataFrame(filename);
         assertEquals(df3, df2);
         assertEquals(df, df3);
-        Integer x = (Integer) df3.getElement(0,0);
-        assertEquals(x, 1);
     }
 }

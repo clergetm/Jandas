@@ -1,25 +1,25 @@
 package fr.uga.jandas;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 
 @SuppressWarnings("unchecked")
 public class Column<T>{
     String label;
-    private ArrayList<T> elements;
+    T [] elements;
+
     public Column(int nb_elements){
-        elements = new ArrayList<>(nb_elements);
+        elements = (T[]) new Object[nb_elements];
     }
 
     public Column(int nb_elements, T [] arr){
-        elements = new ArrayList<>(nb_elements);
-        Collections.addAll(elements, arr);
+        elements = (T[]) new Object[nb_elements];
+        System.arraycopy(arr, 0, elements, 0, nb_elements);
     }
 
     public Column(String l, int nb_elements, T [] arr){
         label = l;
-        elements = new ArrayList<>(nb_elements);
-        Collections.addAll(elements, arr);
+        elements = (T[]) new Object[nb_elements];
+        System.arraycopy(arr, 0, elements, 0, nb_elements);
     }
 
     public void setLabel(String l){
@@ -31,19 +31,19 @@ public class Column<T>{
     }
 
     public void addElement(T e, int index){
-        elements.add(index, e);
+        elements[index] = e;
     }
 
-    public ArrayList<T> getElements(){
+    public T[] getElements(){
         return elements;
     }
 
     public T getElement(int index){
-        return elements.get(index);
+        return elements[index];
     }
 
     public int getSize(){
-        return elements.size();
+        return elements.length;
     }
 
     @Override
@@ -51,10 +51,6 @@ public class Column<T>{
         if (getClass() != obj.getClass()) return false;
         Column col = (Column) obj;
         if (col.getSize() != getSize()) return false;
-        boolean res = true;
-        for (int i = 0; i < col.getSize() ;i++){
-            res = res && col.getElement(i).equals(getElement(i));
-        }
-        return res;
+        return Arrays.equals(col.getElements(), getElements());
     }
 }
