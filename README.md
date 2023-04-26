@@ -11,6 +11,7 @@
 [![CI](https://github.com/MathysC/Jandas/actions/workflows/CI.yml/badge.svg?branch=dev)][ci-action]
 [![Deploy github pages](https://github.com/MathysC/Jandas/actions/workflows/generate-site.yml/badge.svg?branch=dev)][site-action]
 [![Coverage](.github/badges/jacoco.svg)][ci-action]
+[![Branche](.github/badges/branches.svg)][ci-action]
 [![Javadoc](https://img.shields.io/badge/-javadoc-yellow)](https://mathysc.github.io/Jandas/docs/javadoc)
 [![Jacoco](https://img.shields.io/badge/-jacoco-red)](https://mathysc.github.io/Jandas/docs/jacoco )
 </div>
