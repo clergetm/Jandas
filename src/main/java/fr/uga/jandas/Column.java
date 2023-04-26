@@ -5,18 +5,22 @@ import java.util.Arrays;
 @SuppressWarnings("unchecked")
 public class Column<T>{
     String label;
+    private String type;
     T [] elements;
 
-    public Column(int nb_elements){
+    public Column(String type, int nb_elements){
+        this.type = type;
         elements = (T[]) new Object[nb_elements];
     }
 
-    public Column(int nb_elements, T [] arr){
+    public Column(String type, int nb_elements, T [] arr){
+        this.type = type;
         elements = (T[]) new Object[nb_elements];
         System.arraycopy(arr, 0, elements, 0, nb_elements);
     }
 
-    public Column(String l, int nb_elements, T [] arr){
+    public Column(String l, String type, int nb_elements, T [] arr){
+        this.type = type;
         label = l;
         elements = (T[]) new Object[nb_elements];
         System.arraycopy(arr, 0, elements, 0, nb_elements);

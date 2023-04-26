@@ -62,19 +62,19 @@ public class DataFrame {
                 // Parsing types
                 switch (types[i]){
                     case "Integer":
-                        aColumn = new Column<Integer>(nbLines);
+                        aColumn = new Column<Integer>("Integer", nbLines);
                         break;
                     case "String":
-                        aColumn = new Column<String>(nbLines);
+                        aColumn = new Column<String>("String", nbLines);
                         break;
                     case "Float":
-                        aColumn = new Column<Float>(nbLines);
+                        aColumn = new Column<Float>("Float", nbLines);
                         break;
                     case "Boolean":
-                        aColumn = new Column<Boolean>(nbLines);
+                        aColumn = new Column<Boolean>("Boolean", nbLines);
                         break;
                     case "Date":
-                        aColumn = new Column<Date>(nbLines);
+                        aColumn = new Column<Date>("Date", nbLines);
                         break;
                     default:
                         throw new Exception("Unknown column type !");
