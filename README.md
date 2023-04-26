@@ -31,8 +31,10 @@ You can access the documentation here [![Github Pages](https://img.shields.io/ba
 
 ## The features provided by our service
 
-TODO: Copy this part in package description https://github.com/MathysC/Jandas/packages
-<p align="right">(<a href="#top">back to top</a>)</p>
+  - Creation of DataFrame from a defined csv file, or from a set of columns.
+  - Display of a whole or partial dataframe (last/first lines)
+  - Creation of a new DataFrame from an existing one. We can choose the columns and lines that we want to keep.
+  - Statistics functions on columns (mean, max, min)
 
 ## The tool used
 ##### A description of the tool choices you have made.
