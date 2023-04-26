@@ -53,6 +53,9 @@ public class DataFrameTest {
         // test ligne 2
         Object [] line2r = df.getLine(1);
         assertArrayEquals(lin2, line2r);
+        assertThrows(IndexOutOfBoundsException.class, () -> {df.getLine(2);});
+        assertThrows(IndexOutOfBoundsException.class, () -> {df.getLine(-1);});
+
     }
 
     @Test
@@ -88,5 +91,101 @@ public class DataFrameTest {
         DataFrame df3 = new DataFrame(filename);
         assertEquals(df3, df2);
         assertEquals(df, df3);
+    }
+    @Test
+    void DataFrameMultiType() {
+        String filename = "src/test/resources/Test2.csv";
+        DataFrame dft = new DataFrame(filename);
+        assertNotNull(dft);
+        Integer a = (Integer) dft.getElement(0,1);
+        String b = (String) dft.getElement(1,1);
+        Float c = (Float) dft.getElement(2,1);
+        assertEquals(a, 4);
+        assertEquals(b, "Jo");
+        assertEquals(c, 666.1F);
+        dft = new DataFrame("src/test/resources/Test3.csv");
+        a = (Integer) dft.getElement(2,2);
+        b = (String) dft.getElement(1,0);
+        c = (Float) dft.getElement(4,3);
+        Boolean d = (Boolean) dft.getElement(0,0);
+        assertEquals(a, 87);
+        assertEquals(b, "Alice");
+        assertEquals(c, 80.2F);
+        assertEquals(d, true);
+        d = (Boolean) dft.getElement(0,1);
+        assertEquals(d, false);
+        b = (String) dft.getElement(3,1);
+        assertEquals(b, "Marseille");
+    }
+
+    @Test
+    void getColumnLabel() {
+        // test col 1
+        Column col1r = df.getColumn("A");
+        assertEquals(col1r, c1);
+        // test col 2
+        Column col2r = df.getColumn("B");
+        assertEquals(col2r, c2);
+        // test col 3
+        Column col3r = df.getColumn("C");
+        assertEquals(col3r, c3);
+        Column colerr = df.getColumn("Zou");
+        assertNull(colerr);
+    }
+
+
+    @Test
+    void TestCreateFrom1() {
+        String filename = "src/test/resources/Test2.csv";
+        DataFrame dft = new DataFrame(filename);
+        String[] labels = {"B", "C"};
+        DataFrame d2 = dft.createFrom(labels);
+        DataFrame dft2 = new DataFrame("src/test/resources/DF_BC.csv");
+        assertEquals(dft2, d2);
+        String[] labels2 = {"C", "A", "A", "B"};
+        d2 = dft.createFrom(labels2);
+        dft2 = new DataFrame("src/test/resources/DF_CAAB.csv");
+        assertEquals(dft2, d2);
+    }
+
+    @Test
+    void testCreateFrom2() {
+        String filename = "src/test/resources/Test2.csv";
+        DataFrame dft = new DataFrame(filename);
+        int[] indexe1 = {0};
+        DataFrame d2 = dft.createFrom(indexe1);
+        DataFrame dft2 = new DataFrame("src/test/resources/DF_L1.csv");
+        assertEquals(dft2, d2);
+        int[] indexe2 = {1};
+        d2 = dft.createFrom(indexe2);
+        dft2 = new DataFrame("src/test/resources/DF_L2.csv");
+        assertEquals(dft2, d2);
+
+    }
+
+    @Test
+    void testCreateFrom3() {
+        String filename = "src/test/resources/Test2.csv";
+        DataFrame dft = new DataFrame(filename);
+        int[] indexe1 = {0};
+        String[] labels = {"B", "C"};
+        DataFrame d2 = dft.createFrom(labels, indexe1);
+        DataFrame dft2 = new DataFrame("src/test/resources/DF_L1BC.csv");
+        assertEquals(dft2, d2);
+    }
+
+    @Test
+    void testToString(){
+        String filename = "src/test/resources/Test2.csv";
+        DataFrame dft = new DataFrame(filename);
+        String str = dft.toString();
+        String[] lines = str.split("\n");
+        assertEquals(3, lines.length);
+        for (int i = 0; i > lines.length; i++){
+            String s = lines[i];
+            System.out.println(s);
+            if (i==0 || i == lines.length-1) assertEquals(4, s.split(" ").length);
+            else assertEquals(5, s.split(" ").length);
+        }
     }
 }

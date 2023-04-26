@@ -23,12 +23,6 @@ public class DataFrame {
     int lines;
     String [] labels;
 
-    DataFrame(String [] labels, Column [] columns){
-        lines = columns[0].getSize();
-        this.columns = columns;
-        this.labels = labels;
-    }
-
     DataFrame(Column [] columns){
         lines = columns[0].getSize();
         this.columns = columns;
@@ -74,9 +68,6 @@ public class DataFrame {
                     case "Boolean":
                         aColumn = new Column<Boolean>("Boolean", nbLines);
                         break;
-                    case "Date":
-                        aColumn = new Column<Date>("Date", nbLines);
-                        break;
                     default:
                         throw new Exception("Unknown column type !");
                 }
@@ -108,9 +99,6 @@ public class DataFrame {
                         case "Boolean":
                             columns[c].addElement(Boolean.parseBoolean(lineContent[c]), lineCounter);
                             break;
-                        case "Date":
-                            columns[c].addElement((lineContent[c]), lineCounter);
-                            throw new Exception("Dates not implemented yet !");
                         default:
                             throw new Exception("Unknown column type !");
                     }
@@ -137,7 +125,6 @@ public class DataFrame {
                 return columns[l];
             }
         }
-        System.err.println("DataFrame.getColumn : '"+label+"' Unknown label");
         return null;
     }
 
@@ -271,19 +258,7 @@ public class DataFrame {
 
 
     private void print(int start, int end){
-        System.out.print("[ ");
-        for (int c=0; c<columns.length; c++){
-            System.out.print(columns[c].getLabel() + " ");
-        }
-        System.out.print("\n  ");
-        for (int i=start; i<end; i++){
-            Object[] line = getLine(i);
-            for (int j=0; j<columns.length; j++){
-                System.out.print(line[j] + " ");
-            }
-            if (i != end -1 ) System.out.print("\n  ");
-        }
-        System.out.println("]");
+        System.out.print(toString(start, end));
     }
 
     public void print(){
@@ -300,18 +275,22 @@ public class DataFrame {
 
     @Override
     public String toString(){
+        return toString(0, lines);
+    }
+
+    public String toString(int start, int end){
         StringBuilder str = new StringBuilder();
         str.append("[ ");
         for (int c=0; c<columns.length; c++){
             str.append(columns[c].getLabel()).append(" ");
         }
         str.append("\n  ");
-        for (int i=0; i<lines; i++){
+        for (int i=start; i<end; i++){
             Object[] line = getLine(i);
             for (int j=0; j<columns.length; j++){
                 str.append(line[j]).append(" ");
             }
-            if (i != lines -1 ) str.append("\n  ");
+            if (i != end -1 ) str.append("\n  ");
         }
         str.append("]");
         return str.toString();
