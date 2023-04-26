@@ -48,10 +48,8 @@ public class Column<T>{
      * @param arr The array with objects to add in column.
      */
     public Column(String l, String type, int nb_elements, T [] arr){
-        this.type = type;
+        this(type, nb_elements, arr);
         label = l;
-        elements = (T[]) new Object[nb_elements];
-        System.arraycopy(arr, 0, elements, 0, nb_elements);
     }
 
     /**
@@ -222,6 +220,7 @@ public class Column<T>{
     /**
      * Compares this Column to the specified object. The result is true if and only if the argument is not null and is a
      * Column object that represents the same sequence of elements, and same type, as this object.
+     * If there are empty elements in a column, equals return false.
      * @param obj The object to compare this Column against
      * @return true if the given object represents a Column equivalent to this Column, false otherwise
      */
@@ -231,8 +230,12 @@ public class Column<T>{
         Column col = (Column) obj;
         if (col.getSize() != getSize()) return false;
         if (!col.type.equals(type)) return false;
+        if (col.label == null && label != null) return false;
+        if (col.label != null && label == null) return false;
+        if (label != null && !col.label.equals(label)) return false;
         boolean res = true;
         for (int i = 0; i < col.getSize() ;i++){
+            if (col.getElement(i) == null || getElement(i) == null) return false;
             res = res && col.getElement(i).equals(getElement(i));
         }
         return res;

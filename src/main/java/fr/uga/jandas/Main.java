@@ -44,12 +44,12 @@ class Main {
 
         System.out.println("|4. Statistics on the created dataframes : where NaN is 'not a number'");
         System.out.println("   - Call to mean()");
-        roles.mean();
+        System.out.println(roles.mean());
 
         System.out.println("   - Call to max()");
-        roles.max();
+        System.out.println(roles.max());
 
         System.out.println("   - Call to min()");
-        roles.min();
+        System.out.println(roles.min());
     }
 }
