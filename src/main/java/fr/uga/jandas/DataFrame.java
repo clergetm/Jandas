@@ -161,7 +161,22 @@ public class DataFrame {
         for (int i=0; i<columns.length; i++){
             newCols[i] = columns[i].createPartialCopy(indexes);
         }
+        return new DataFrame(newCols);
+    }
 
+    /* createFrom :
+    Create a new Dataframe based on a line and column set of current Dataframe.
+    Only the lines of indexes referenced in parameter are present in columns.
+     */
+    public DataFrame createFrom(String [] labels, int [] lines){
+        Column [] cols = new Column[labels.length];
+        for (int l=0; l<labels.length; l++){
+            cols[l] = getColumn(labels[l]);
+        }
+        Column [] newCols = new Column[labels.length];
+        for (int i=0; i<cols.length; i++){
+            newCols[i] = cols[i].createPartialCopy(lines);
+        }
         return new DataFrame(newCols);
     }
 
