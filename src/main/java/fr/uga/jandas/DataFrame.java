@@ -62,19 +62,19 @@ public class DataFrame {
                 // Parsing types
                 switch (types[i]){
                     case "Integer":
-                        aColumn = new Column<Integer>(nbLines);
+                        aColumn = new Column<Integer>("Integer", nbLines);
                         break;
                     case "String":
-                        aColumn = new Column<String>(nbLines);
+                        aColumn = new Column<String>("String", nbLines);
                         break;
                     case "Float":
-                        aColumn = new Column<Float>(nbLines);
+                        aColumn = new Column<Float>("Float", nbLines);
                         break;
                     case "Boolean":
-                        aColumn = new Column<Boolean>(nbLines);
+                        aColumn = new Column<Boolean>("Boolean", nbLines);
                         break;
                     case "Date":
-                        aColumn = new Column<Date>(nbLines);
+                        aColumn = new Column<Date>("Date", nbLines);
                         break;
                     default:
                         throw new Exception("Unknown column type !");
@@ -171,10 +171,31 @@ public class DataFrame {
 
     /* createFrom :
     Create a new Dataframe based on a line set of current Dataframe.
+    It uses createPartialCopy() for every column, a function that returns
+    a copy with only specified lines.
  */
     public DataFrame createFrom(int [] indexes){
-        //TODO
-        return null;
+        Column [] newCols = new Column[columns.length];
+        for (int i=0; i<columns.length; i++){
+            newCols[i] = columns[i].createPartialCopy(indexes);
+        }
+        return new DataFrame(newCols);
+    }
+
+    /* createFrom :
+    Create a new Dataframe based on a line and column set of current Dataframe.
+    Only the lines of indexes referenced in parameter are present in columns.
+     */
+    public DataFrame createFrom(String [] labels, int [] lines){
+        Column [] cols = new Column[labels.length];
+        for (int l=0; l<labels.length; l++){
+            cols[l] = getColumn(labels[l]);
+        }
+        Column [] newCols = new Column[labels.length];
+        for (int i=0; i<cols.length; i++){
+            newCols[i] = cols[i].createPartialCopy(lines);
+        }
+        return new DataFrame(newCols);
     }
 
 
