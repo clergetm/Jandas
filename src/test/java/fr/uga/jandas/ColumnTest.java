@@ -72,4 +72,17 @@ class ColumnTest {
         col.addElement(100, 4);
         assertEquals(col, colbis);
     }
+
+    @Test
+    void TestSetLabel(){
+        Float[] arr = {1.F, 2.F, 2.9F, 3.9F, 4.8F, 5.5F};
+        String[] labels = {"A", "B", "C", "D", "E", "F"};
+        Column<Float> c = new Column<>("ratio", "Float", 6, arr);
+        Column<Float> c2 = new Column<>("Float", 6, arr);
+        assertNotEquals(c, c2);
+        c2.setLabel("ratio");
+        assertEquals(c, c2);
+        c.setLabel("flower");
+        assertNotEquals(c, c2);
+    }
 }
