@@ -71,5 +71,6 @@
       </plugin>
       
     </plugins>
+    <finalName>jandas</finalName>
   </build>
 </project>
