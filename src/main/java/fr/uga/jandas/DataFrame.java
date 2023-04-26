@@ -1,7 +1,6 @@
 package fr.uga.jandas;
 
 import java.io.FileInputStream;
-import java.util.Date;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -67,9 +66,6 @@ public class DataFrame {
                     case "Boolean":
                         aColumn = new Column<Boolean>("Boolean", nbLines);
                         break;
-                    case "Date":
-                        aColumn = new Column<Date>("Date", nbLines);
-                        break;
                     default:
                         throw new Exception("Unknown column type !");
                 }
@@ -101,9 +97,6 @@ public class DataFrame {
                         case "Boolean":
                             columns[c].addElement(Boolean.parseBoolean(lineContent[c]), lineCounter);
                             break;
-                        case "Date":
-                            columns[c].addElement((lineContent[c]), lineCounter);
-                            throw new Exception("Dates not implemented yet !");
                         default:
                             throw new Exception("Unknown column type !");
                     }
