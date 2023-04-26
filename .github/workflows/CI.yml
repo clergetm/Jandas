@@ -53,6 +53,7 @@ jobs:
               default_author: ${{ env.ci_commit_author }}
               message: '${{ env.ci_commit_message }}'
               add: '*.svg'
+              pull: '--rebase --autostash'
 
           # Create an artifact containing the jacoco report
           - name: Upload JaCoCo coverage report
