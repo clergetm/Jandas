@@ -1,6 +1,7 @@
 package fr.uga.jandas;
 
 import java.io.FileInputStream;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Scanner;
@@ -158,8 +159,31 @@ public class DataFrame {
         return labels;
     }
 
+    /* mean :
+    Prints the mean value calculated of each column. If the mean is not calculable,
+    it prints NaN.
+     */
+    public void mean(){
+        StringBuilder str = new StringBuilder("     ");
+        DecimalFormat df = new DecimalFormat("0.#");
+        for (String l: labels){
+            str.append(l +" ");
+        }
+        str.append("\nmean");
+
+        for (Column c: columns){
+            Double res = c.mean();
+            if (res == null)
+                str.append(" NaN ");
+            else
+                str.append(df.format(res)+" ");
+        }
+        str.append("\n");
+        System.out.println(str);
+    }
+
     /* createFrom :
-        Create a new Dataframe based on a column set of current Dataframe.
+        Creates a new Dataframe based on a column set of current Dataframe.
      */
     public DataFrame createFrom(String [] labels){
         Column [] cols = new Column[labels.length];
@@ -170,7 +194,7 @@ public class DataFrame {
     }
 
     /* createFrom :
-    Create a new Dataframe based on a line set of current Dataframe.
+    Creates a new Dataframe based on a line set of current Dataframe.
     It uses createPartialCopy() for every column, a function that returns
     a copy with only specified lines.
  */
@@ -183,7 +207,7 @@ public class DataFrame {
     }
 
     /* createFrom :
-    Create a new Dataframe based on a line and column set of current Dataframe.
+    Creates a new Dataframe based on a line and column set of current Dataframe.
     Only the lines of indexes referenced in parameter are present in columns.
      */
     public DataFrame createFrom(String [] labels, int [] lines){

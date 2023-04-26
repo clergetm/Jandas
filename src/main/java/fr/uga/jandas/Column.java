@@ -61,6 +61,33 @@ public class Column<T>{
         return elements.length;
     }
 
+    /* mean :
+        Function that calculate mean value of column if and only if the column
+        is of type Integer, or Float, or Double. Else, it will return null.
+     */
+    public Double mean() {
+        Double sum = 0.;
+        switch (type){
+            case "Integer":
+                for (T element : elements) {
+                    sum += ((Integer) element).doubleValue();
+                }
+                return sum/elements.length;
+            case "Float":
+                for (T element : elements) {
+                    sum += ((Float) element).doubleValue();
+                }
+                return sum/elements.length;
+            case "Double":
+                for (T element : elements) {
+                    sum += (Double) element;
+                }
+                return sum/elements.length;
+            default:
+                return null;
+        }
+    }
+
     public Column<T> createPartialCopy(int [] indexes){
         return new Column<>(label, indexes, elements);
     }
