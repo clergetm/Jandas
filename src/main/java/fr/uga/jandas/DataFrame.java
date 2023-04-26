@@ -5,15 +5,14 @@ import java.util.Objects;
 import java.util.Scanner;
 
 /**
-    Format des fichiers en entrée:
+    Input file format:
         t0,     t1,     t2,     t3
         l0;     l1,     l2,     l3
         n00,    n01,    n02,    n03
         n10,    n11,    n12,    n13
-    La première ligne donne les types des colonnes. La seconde contient les étiquettes de chaque colonne.
-    Puis chaque ligne correspond à une ligne du tableau et les virgules correspondent aux séparations
-    entre les colonnes. Les portions de texte séparées par une virgule correspondent ainsi aux contenus des
-    cellules du tableau.
+    The first line is for columns types. The second one is for the labels.
+    After those two lines, each line correspond to a line of the table. 
+    Inside a line commas are used as separators when changin columns. No space are needed around commas.
  **/
 public class DataFrame {
 
