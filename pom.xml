@@ -3,11 +3,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>fr.uga.jandas</groupId>
-  <artifactId>Jandas</artifactId>
+  <artifactId>jandas</artifactId>  <!-- Lowercase for actions to work fine -->
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
-
-  <name>Jandas</name>
+  <name>jandas</name> <!-- Lowercase for actions to work fine -->
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -15,6 +14,15 @@
     <maven.compiler.target>17</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+
+  
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/MathysC/Jandas</url>
+    </repository>
+  </distributionManagement>
 
   <dependencies>
     <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
@@ -32,4 +40,28 @@
       <version>0.8.9</version>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.8</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>generate-code-coverage-report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+        </plugin>
+    </plugins>
+  </build>
 </project>
