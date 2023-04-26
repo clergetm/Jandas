@@ -70,6 +70,7 @@ public class Column<T>{
         if (getClass() != obj.getClass()) return false;
         Column col = (Column) obj;
         if (col.getSize() != getSize()) return false;
+        if (!col.type.equals(type)) return false;
         boolean res = true;
         for (int i = 0; i < col.getSize() ;i++){
             res = res && col.getElement(i).equals(getElement(i));

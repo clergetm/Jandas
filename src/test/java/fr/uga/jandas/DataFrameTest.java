@@ -21,9 +21,9 @@ public class DataFrameTest {
         lin1 = new Integer[]{1, 2, 3};
         lin2 = new Integer[]{4, 5, 6};
         // Column
-        c1 = new Column<>("A", 2, col1);
-        c2 = new Column<>("B", 2, col2);
-        c3 = new Column<>("C", 2, col3);
+        c1 = new Column<>("A", "Integer", 2, col1);
+        c2 = new Column<>("B", "Integer", 2, col2);
+        c3 = new Column<>("C", "Integer", 2, col3);
         // DataFrame
         Column [] columns = new Column[]{c1, c2, c3};
         df = new DataFrame(columns);
@@ -71,11 +71,11 @@ public class DataFrameTest {
         DataFrame df2 = new DataFrame(columns);
         assertEquals(df,df2);
         Integer[] col3bis = new Integer[]{9, 6};
-        Column c3bis = new Column("C", 2, col3bis);
+        Column c3bis = new Column("C", "Integer" ,2, col3bis);
         columns = new Column[]{c1, c2, c3bis};
         df2 = new DataFrame(columns);
         assertNotEquals(df, df2);
-        Column c3label = new Column("E", 2, col3);
+        Column c3label = new Column("E", "Integer", 2, col3);
         columns = new Column[]{c1, c2, c3label};
         df2 = new DataFrame(columns);
         assertNotEquals(df, df2);

@@ -15,7 +15,7 @@ class ColumnTest {
         // Column Test
         // [ 1 2 3 4 5 6 ]
         data = new Integer[]{1, 2, 3, 4, 5, 6};
-        col = new Column(6, data);
+        col = new Column("Integer", 6, data);
     }
 
     @Test
@@ -40,18 +40,18 @@ class ColumnTest {
         Column wrongCol;
         // 1 element off
         Integer[] d1 = new Integer[]{1, 2, 3, 4, 9, 6};
-        wrongCol = new Column(6, d1);
+        wrongCol = new Column("Integer",6, d1);
         assertNotEquals(wrongCol, col);
         // less elements
         Integer[] d2 = new Integer[]{1, 2, 3, 4, 5, 6};
-        wrongCol = new Column(5, d2);
+        wrongCol = new Column("Integer",5, d2);
         assertNotEquals(wrongCol, col);
         // more elements
         Integer[] d3 = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8};
-        wrongCol = new Column(7, d3);
+        wrongCol = new Column("Integer",7, d3);
         assertNotEquals(wrongCol, col);
         // equals
-        wrongCol = new Column(6, d3);
+        wrongCol = new Column("Integer",6, d3);
         assertEquals(col, wrongCol);
     }
 
@@ -60,12 +60,12 @@ class ColumnTest {
         // 1 element off
         Column colbis;
 //        colbis = new Column<Integer>( 6);
-        colbis = new Column(6);
+        colbis = new Column("Integer",6);
         for (int i = 0; i < 6; i++){
             colbis.addElement(data[i], i);
         }
         assertEquals(col, colbis);
-        colbis = new Column(6, data);
+        colbis = new Column("Integer",6, data);
         assertEquals(col, colbis);
         colbis.addElement(100, 4);
         assertNotEquals(col, colbis);
