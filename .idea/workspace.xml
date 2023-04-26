@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9097db2d-ff33-484e-8328-fffcd07a5ecf" name="Changes" comment="fix: arraylist remplace array. switch and cast before insertion into column">
+    <list default="true" id="9097db2d-ff33-484e-8328-fffcd07a5ecf" name="Changes" comment="add: multi type test">
+      <change afterPath="$PROJECT_DIR$/src/test/resources/DF_BC.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/DF_CAAB.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/DF_L1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/DF_L2.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/uga/jandas/Column.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/uga/jandas/Column.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/uga/jandas/DataFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/uga/jandas/DataFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/fr/uga/jandas/DataFrameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/fr/uga/jandas/DataFrameTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/Test1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/Test1.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +62,7 @@
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "8fd477e6",
+    "git-widget-placeholder": "dataframe",
     "last_opened_file_path": "/home/armand/M1/S2/Crypto",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -86,37 +87,7 @@
       <recent name="fr.uga.jandas" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DataFrameTest">
-    <configuration name="ColumnTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Jandas" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="fr.uga.jandas.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="fr.uga.jandas" />
-      <option name="MAIN_CLASS_NAME" value="fr.uga.jandas.ColumnTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DataFrameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Jandas" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="fr.uga.jandas.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="fr.uga.jandas" />
-      <option name="MAIN_CLASS_NAME" value="fr.uga.jandas.DataFrameTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.DataFrameTest.testCreateFrom1">
     <configuration name="DataFrameTest.DataFrameFromFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Jandas" />
       <extension name="coverage">
@@ -133,7 +104,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DataFrameTest.Equals" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DataFrameTest.DataFrameMultiType" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Jandas" />
       <extension name="coverage">
         <pattern>
@@ -143,13 +114,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="fr.uga.jandas" />
       <option name="MAIN_CLASS_NAME" value="fr.uga.jandas.DataFrameTest" />
-      <option name="METHOD_NAME" value="Equals" />
+      <option name="METHOD_NAME" value="DataFrameMultiType" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DataFrameTest.getElement" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DataFrameTest.createFrom" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Jandas" />
       <extension name="coverage">
         <pattern>
@@ -159,7 +130,39 @@
       </extension>
       <option name="PACKAGE_NAME" value="fr.uga.jandas" />
       <option name="MAIN_CLASS_NAME" value="fr.uga.jandas.DataFrameTest" />
-      <option name="METHOD_NAME" value="getElement" />
+      <option name="METHOD_NAME" value="createFrom" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataFrameTest.testCreateFrom" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jandas" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.uga.jandas.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fr.uga.jandas" />
+      <option name="MAIN_CLASS_NAME" value="fr.uga.jandas.DataFrameTest" />
+      <option name="METHOD_NAME" value="testCreateFrom" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataFrameTest.testCreateFrom1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jandas" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.uga.jandas.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fr.uga.jandas" />
+      <option name="MAIN_CLASS_NAME" value="fr.uga.jandas.DataFrameTest" />
+      <option name="METHOD_NAME" value="testCreateFrom1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -167,11 +170,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DataFrameTest" />
-        <item itemvalue="JUnit.DataFrameTest.Equals" />
+        <item itemvalue="JUnit.DataFrameTest.testCreateFrom1" />
+        <item itemvalue="JUnit.DataFrameTest.testCreateFrom" />
+        <item itemvalue="JUnit.DataFrameTest.createFrom" />
+        <item itemvalue="JUnit.DataFrameTest.DataFrameMultiType" />
         <item itemvalue="JUnit.DataFrameTest.DataFrameFromFile" />
-        <item itemvalue="JUnit.DataFrameTest.getElement" />
-        <item itemvalue="JUnit.ColumnTest" />
       </list>
     </recent_temporary>
   </component>
@@ -271,7 +274,21 @@
       <option name="project" value="LOCAL" />
       <updated>1682497431915</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="fix: equals with type in colomn">
+      <created>1682499620098</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1682499620098</updated>
+    </task>
+    <task id="LOCAL-00014" summary="add: multi type test">
+      <created>1682500712318</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1682500712318</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -311,32 +328,9 @@
     <MESSAGE value="feat: test add element" />
     <MESSAGE value="feat: add test for fileconversion" />
     <MESSAGE value="fix: arraylist remplace array. switch and cast before insertion into column" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: arraylist remplace array. switch and cast before insertion into column" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/fr/uga/jandas/DataFrameTest.java</url>
-          <line>89</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/fr/uga/jandas/DataFrameTest.java</url>
-          <line>69</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/test/java/fr/uga/jandas/DataFrameTest.java</url>
-          <line>68</line>
-          <properties class="fr.uga.jandas.DataFrameTest" method="Equals">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="fix: equals with type in colomn" />
+    <MESSAGE value="add: multi type test" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: multi type test" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Jandas$DataFrameTest.ic" NAME="DataFrameTest Coverage Results" MODIFIED="1681891060278" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
