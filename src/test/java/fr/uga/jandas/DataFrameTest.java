@@ -21,9 +21,9 @@ public class DataFrameTest {
         lin1 = new Integer[]{1, 2, 3};
         lin2 = new Integer[]{4, 5, 6};
         // Column
-        c1 = new Column<Integer>("A", 2, col1);
-        c2 = new Column<Integer>("B", 2, col2);
-        c3 = new Column<Integer>("C", 2, col3);
+        c1 = new Column<>("A", 2, col1);
+        c2 = new Column<>("B", 2, col2);
+        c3 = new Column<>("C", 2, col3);
         // DataFrame
         Column [] columns = new Column[]{c1, c2, c3};
         df = new DataFrame(columns);

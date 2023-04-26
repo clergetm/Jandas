@@ -1,6 +1,5 @@
 package fr.uga.jandas;
 
-import java.util.Arrays;
 
 @SuppressWarnings("unchecked")
 public class Column<T>{
