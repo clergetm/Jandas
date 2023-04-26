@@ -89,4 +89,32 @@ public class DataFrameTest {
         assertEquals(df3, df2);
         assertEquals(df, df3);
     }
+    @Test
+    void DataFrameMultiType() {
+        String filename = "src/test/resources/Test2.csv";
+        DataFrame dft = new DataFrame(filename);
+        assertNotNull(dft);
+        Integer a = (Integer) dft.getElement(0,1);
+        String b = (String) dft.getElement(1,1);
+        Float c = (Float) dft.getElement(2,1);
+        assertEquals(a, 4);
+        assertEquals(b, "Jo");
+        assertEquals(c, 666.1F);
+    }
+
+    @Test
+    void getColumnLabel() {
+        // test col 1
+        Column col1r = df.getColumn("A");
+        assertEquals(col1r, c1);
+        // test col 2
+        Column col2r = df.getColumn("B");
+        assertEquals(col2r, c2);
+        // test col 3
+        Column col3r = df.getColumn("C");
+        assertEquals(col3r, c3);
+    }
+
+
+
 }
