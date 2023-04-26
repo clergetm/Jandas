@@ -1,0 +1,6 @@
+Boolean,String,Integer,String,Float
+Femme,Nom,Age,Ville,Taille
+true,Alice,25,Paris,169.8
+false,Bob,13,Marseille,205
+true,Marie,87,Grenoble,161
+false,Jean,2,Marseille,80.2
