@@ -9,9 +9,8 @@
   </p>
 
 
-<a href="https://github.com/MathysC/Jandas/actions/workflows/CI.yml"><img src="https://github.com/MathysC/Jandas/actions/workflows/CI.yml/badge.svg?branch=dev" alt="CI"></a> <a href="https://github.com/MathysC/Jandas/actions/workflows/generate-site.yml"><img src="https://github.com/MathysC/Jandas/actions/workflows/generate-site.yml/badge.svg?branch=dev" alt="Deploy github pages"></a> <a href="https://github.com/MathysC/Jandas/actions/workflows/CI.yml"><img src="https://mathysc.github.io/Jandas/docs/badges/jacoco.svg" alt="CI"></a>  <a href="https://github.com/MathysC/Jandas/actions/workflows/CI.yml"><img src="https://mathysc.github.io/Jandas/docs/badges/branches.svg" alt="Branches"></a> <a href="https://mathysc.github.io/Jandas/docs/javadoc"><img src="https://img.shields.io/badge/-javadoc-yellow" alt="Javadoc"></a> <a href="https://mathysc.github.io/Jandas/docs/jacoco"><img src="https://img.shields.io/badge/-jacoco-red" alt="Jacoco"></a>
+<a href="https://github.com/MathysC/Jandas/actions/workflows/CI.yml"><img src="https://github.com/MathysC/Jandas/actions/workflows/CI.yml/badge.svg?branch=dev" alt="CI"></a> <a href="https://github.com/MathysC/Jandas/actions/workflows/generate-site.yml"><img src="https://github.com/MathysC/Jandas/actions/workflows/generate-site.yml/badge.svg?branch=dev" alt="Deploy github pages"></a> <a href="https://github.com/MathysC/Jandas/actions/workflows/CI.yml"><img src="https://mathysc.github.io/Jandas/docs/badges/jacoco.svg" alt="CI"></a>  <a href="https://github.com/MathysC/Jandas/actions/workflows/CI.yml"><img src="https://mathysc.github.io/Jandas/docs/badges/branches.svg" alt="Branches"></a> <a href="https://mathysc.github.io/Jandas/docs/javadoc"><img src="https://img.shields.io/badge/-javadoc-yellow" alt="Javadoc"></a> <a href="https://mathysc.github.io/Jandas/docs/jacoco"><img src="https://img.shields.io/badge/-jacoco-red" alt="Jacoco"></a> <a href="http://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" alt="License: GPL v3"></a>
 </div>
-
 <!-- ABOUT THE PROJECT -->
 
 ## About the project
